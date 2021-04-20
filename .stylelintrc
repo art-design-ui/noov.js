@@ -1,0 +1,12 @@
+{
+  extends: "stylelint-config-recommended",
+  rules: {
+    "at-rule-empty-line-before": "never",
+    "at-rule-name-case": "lower",
+    "block-no-empty": true,
+    "selector-pseudo-class-no-unknown": [true, {
+      ignorePseudoClasses: ["global"]
+    }]
+  },
+  ignoreFiles: ["node_modules/**/*"]
+}

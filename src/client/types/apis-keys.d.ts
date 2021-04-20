@@ -1,0 +1,20 @@
+declare const keys: [
+  'getLabelCategory',
+  'getLabelSelect',
+  'getBasicPage',
+  'getSearchTotal',
+  'getExtPage',
+  'getLabelDims',
+  'getLabelDetail',
+  'getBaseByDim',
+  'getGraphSelect',
+  'getGraphResult',
+  'getGraphList',
+  'getGraphDetail',
+  'getGraphChangeLevel',
+  'getGraphAgainResult',
+  'getGraphLabelDetail',
+  'getDingTalkCheck',
+  'postLoginTo',
+  'getUser'
+]

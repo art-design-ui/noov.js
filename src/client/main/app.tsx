@@ -4,8 +4,7 @@ import { Provider } from 'react-redux'
 import RouterComponent from './router'
 import store from '@store/reducers'
 import './../style/reset.css'
-import zhCN from 'antd/es/locale/zh_CN'
-import { ConfigProvider } from 'antd'
+
 
 class App extends React.Component<any, any> {
   constructor(props: any) {
@@ -13,14 +12,12 @@ class App extends React.Component<any, any> {
   }
 
   render(): JSX.Element {
-    return (
-      <ConfigProvider locale={zhCN}>
+    return ( 
         <Provider store={store}>
           <RouterComponent />
         </Provider>
-      </ConfigProvider>
     )
   }
 }
 
-export default hot(App)
+export default App

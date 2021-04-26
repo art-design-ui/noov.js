@@ -1,26 +1,10 @@
 import React from 'react'
-import { HashRouter, Redirect, Route, Switch, withRouter } from 'react-router-dom'
+import { BrowserRouter , Redirect, Route, Switch, withRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader/root'
 
 import PageLoading from '../components/pageLoading'
 
-let routes: any[] = []
-
-try {
-  const context = require.context(`../modules`, true, /.*\/routes\.tsx?$/)
-  context.keys().forEach((key: string) => {
-    const route = context(key).default
-    routes = routes.concat(route)
-  })
-} catch (err) {
-  console.warn(err.message)
-}
-
-routes.push({
-  path: '/',
-  redirect: '/databank/center'
-})
-
+import routes from './route-config'
 console.log('>>> routes: ', JSON.stringify(routes))
 
 class SwitchRouterComponent extends React.Component<any, any> {
@@ -36,7 +20,7 @@ class SwitchRouterComponent extends React.Component<any, any> {
 
   render(): JSX.Element {
     return (
-      <React.Suspense fallback={<PageLoading />}>
+      // <React.Suspense fallback={<PageLoading />}>
         <Switch>
           {routes.map((route, index) =>
             route.redirect ? (
@@ -51,7 +35,7 @@ class SwitchRouterComponent extends React.Component<any, any> {
             )
           )}
         </Switch>
-      </React.Suspense>
+      // </React.Suspense>
     )
   }
 }
@@ -62,11 +46,12 @@ const WithRouterComponent = withRouter(SwitchRouterComponent)
 class RouterComponent extends React.Component<any, any> {
   render(): JSX.Element {
     return (
-      <HashRouter>
+      // <BrowserRouter >
         <WithRouterComponent />
-      </HashRouter>
+      // </BrowserRouter >
     )
   }
 }
 
 export default hot(RouterComponent)
+

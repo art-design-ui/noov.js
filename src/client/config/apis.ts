@@ -2,10 +2,10 @@ const serverMap: IServerMap = {
   baseServer: {
     baseMap: {
       localprod: '',
-      prod: 'https://databank.forchange.cn',
-      stage: 'https://stage.pandateacher.com/forchangedata/databank/',
-      test: 'https://test.pandateacher.com/forchangedata/databank/',
-      dev: 'https://dev.pandateacher.com/forchangedata/databank',
+      prod: '',
+      stage: '',
+      test: '',
+      dev: '',
       local: 'http://localhost:4320'
     },
     default: true

@@ -1,57 +1,24 @@
-import React from 'react'
-import { BrowserRouter , Redirect, Route, Switch, withRouter } from 'react-router-dom'
-import { hot } from 'react-hot-loader/root'
+// src/client/router/indxex.js
+//路由配置文件
 
-import PageLoading from '../components/pageLoading'
 
-import routes from './route-config'
-console.log('>>> routes: ', JSON.stringify(routes))
+import Layout from './layout';
 
-class SwitchRouterComponent extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props)
-  }
+import React from 'react';
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 
-  componentDidUpdate(prevProps: any): void {
-    if (this.props.location !== prevProps.location) {
-      console.log('>>> Router Change: ', this.props.location)
-    }
-  }
-
-  render(): JSX.Element {
+function App({ routeList }: any) {
     return (
-      // <React.Suspense fallback={<PageLoading />}>
-        <Switch>
-          {routes.map((route, index) =>
-            route.redirect ? (
-              <Redirect exact key={index} from={route.path} to={route.redirect} />
-            ) : (
-              <Route
-                key={index}
-                path={route.path}
-                exact={false}
-                component={route.component}
-              />
-            )
-          )}
-        </Switch>
-      // </React.Suspense>
-    )
-  }
+        <Layout>
+            <Switch>
+                {
+                    routeList.map((item: any) => {
+                        return <Route key={item.path} {...item} />
+                    })
+                }
+            </Switch>
+        </Layout>
+    );
 }
 
-const WithRouterComponent = withRouter(SwitchRouterComponent)
-
-/* eslint-disable */
-class RouterComponent extends React.Component<any, any> {
-  render(): JSX.Element {
-    return (
-      // <BrowserRouter >
-        <WithRouterComponent />
-      // </BrowserRouter >
-    )
-  }
-}
-
-export default hot(RouterComponent)
-
+export default App;

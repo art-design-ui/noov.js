@@ -21,13 +21,13 @@ module.exports = {
   },
 
   entry: {
-    app: './src/client/main/index.tsx'
+    main: './src/client/main/index.tsx'
   },
 
   output: {
-    path: config.base.assetsRoot,
+    path: utils.resolve('/dist/static'),
     publicPath: config.base.assetsPublicPath,
-    filename: utils.assetsPath('js/[name].[hash]p.js'),
+    filename: '[name].js',
     chunkFilename: utils.assetsPath('js/[id].[chunkhash]p.js')
   },
 
@@ -88,29 +88,21 @@ module.exports = {
     })
   ],
 
-  // optimization: {
-  //   // 提取公共资源
-  //   // 分离基础库
-  //   splitChunks: {
-  //     chunks: 'async',
-  //     minSize: 30000,
-  //     maxSize: 0,
-  //     minChunks: 1,
-  //     maxAsyncRequests: 5,
-  //     maxInitialRequests: 3,
-  //     automaticNameDelimiter: '~',
-  //     name: true,
-  //     cacheGroups: {
-  //       vendors: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         priority: -10
-  //       },
-  //       default: {
-  //         minChunks: 2,
-  //         priority: -20,
-  //         reuseExistingChunk: true
-  //       }
-  //     }
-  //   }
-  // }
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                styles: {
+                    name: 'styles',
+                    test: /\.less$/,
+                    chunks: 'all',
+                    enforce: true,
+                },
+                libs: { // 抽离第三方库
+                    test: /node_modules/, // 指定是node_modules下的第三方包
+                    chunks: 'initial',
+                    name: 'libs'// 打包后的文件名，任意命名    
+                }
+            }
+        }
+    },
 }

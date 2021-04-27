@@ -17,7 +17,7 @@ import routeList from '../../client/main/route-config'
 
 import matchRoute from '../../share/match-route';
 
-import App from '../../client/main/app.tsx';
+import App from '../../client/main/router';
 
 import getStaticRoutes from '../common/get-static-routes';
 
@@ -103,7 +103,7 @@ export default async (ctx, next) => {
                 ${assetsMap.css.join('')}
             </head>
             <body>
-                <div id="root">${html}</div>
+                <div id="app">${html}</div>
                 <textarea id="ssrTextInitData" style="display:none;">${JSON.stringify(fetchResult)}</textarea>
             </body>
             </html>

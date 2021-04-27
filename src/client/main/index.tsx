@@ -1,66 +1,68 @@
-import { createHashHistory } from 'history'
+/** @format */
+//client/app/index.js
+//浏览器端页面结构渲染入口
+
 import React from 'react'
-
-import App from './app'
-import apis from '../library/apis'
-import sensors from '../library/sensors'
-
-import ReactDom from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-import routes from './route-config'
+import ReactDOM from 'react-dom'
+import App from './router'
+import { BrowserRouter } from 'react-router-dom'
+import routeList from './route-config'
 // @ts-ignore
-import matchRoute from '../../share/match-route';
+import matchRoute from '../../share/match-route'
 // @ts-ignore
-import proConfig from '../../share/pro-config';
+import proConfig from '../../share/pro-config'
 
-
-window.apis = apis
-window.sensors = sensors
-window.router = createHashHistory()
-
-console.log('routes',routes)
-
-function renderDom(routes:any) {
+function renderDom(routeList: any) {
+        console.log('渲染index')
         //渲染index
-        ReactDom.hydrate(<BrowserRouter>
-                <App />
-        </BrowserRouter>
-                , document.getElementById('root'))
+        ReactDOM.hydrate(
+                <BrowserRouter>
+                        <App routeList={routeList} />
+                </BrowserRouter>,
+                document.getElementById('app'),
+        )
 }
 
-function clientRender(routes:any) {
-  if(document.getElementById('ssrTextInitData')){
-    let value = document.getElementById('ssrTextInitData').value
-    let initialData = JSON.parse(value&&value.replace(/\\n/g,''));
-    window.__INITIAL_DATA__ = initialData || {};
-}
+function clientRender(routeList: any) {
+
+        if (document.getElementById('ssrTextInitData')) {
+                // @ts-ignore
+                let value = document.getElementById('ssrTextInitData').value
+                let initialData = JSON.parse(value && value.replace(/\\n/g, ''))
+                // @ts-ignore
+                window.__INITIAL_DATA__ = initialData || {}
+        }
+
 
         //查找路由
-        // let matchResult = matchRoute(document.location.pathname, routes);
-        // let { targetRoute } = matchResult;
-        // if (targetRoute) {
-        //         //预加载 等待异步脚本加载完成
-        //         if (targetRoute.component[proConfig.asyncComponentKey]) {
-        //                 targetRoute.component().props.load().then((res:any) => {
-        //                         //异步组件加载完成后再渲染页面
-        //                         console.log('异步组件加载完成.');
-        //                         //设置已加载完的组件，否则需要重新请求
-        //                         targetRoute.component = res?res.default:null;
-        //                         renderDom(routes);
-        //                 });
-        //         }
-
-        // } else {
-                renderDom(routes);
-        // }
+        let matchResult = matchRoute(document.location.pathname, routeList)
+        let { targetRoute } = matchResult
+        console.log('targetRoute===>', targetRoute)
+        if (targetRoute) {
+                //预加载 等待异步脚本加载完成
+                // if (targetRoute.component[proConfig.asyncComponentKey]) {
+                // targetRoute
+                //         .component()
+                //         .then((res: any) => {
+                //                 //异步组件加载完成后再渲染页面
+                //                 console.log('异步组件加载完成.')
+                //设置已加载完的组件，否则需要重新请求
+                // targetRoute.component = res ? res.default : null
+                renderDom(routeList)
+                // })
+                // }
+        } else {
+                console.log('renderDom==>', renderDom)
+                renderDom(routeList)
+        }
 }
 
 //渲染入口
-clientRender(routes);
+clientRender(routeList)
 
 //开发环境才会开启
 // @ts-ignore
 if (process.env.NODE_ENV === 'development' && module.hot) {
         // @ts-ignore
-        module.hot.accept();
+        module.hot.accept()
 }

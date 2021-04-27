@@ -17,7 +17,7 @@ module.exports = merge(baseWebpackConfig, {
   },
 
   entry: {
-    app: ['webpack-hot-middleware/client?path=__hmr', './src/client/main/index.tsx']
+    main: ['webpack-hot-middleware/client?path=__hmr', './src/client/main/index.tsx']
   },
 
   module: {

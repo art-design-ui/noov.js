@@ -1,28 +1,28 @@
-var path = require('path')
-var express = require('express')
-var webpack = require('webpack')
-var devMiddleware = require('webpack-dev-middleware')
-var hotMiddleware = require('webpack-hot-middleware')
-var webpackConfig = require('./webpack.dev.conf')
+const path = require('path')
+const express = require('express')
+const webpack = require('webpack')
+const devMiddleware = require('webpack-dev-middleware')
+const hotMiddleware = require('webpack-hot-middleware')
+const webpackConfig = require('./webpack.dev.conf')
 
-var config = require('../../config')
-var port = config.dev.port
+const config = require('../../config')
+const port = config.dev.port
 
-var getPort = require('get-port')
+const getPort = require('get-port')
 
-var main = function() {
+const main = function() {
   getPort({
     port: getPort.makeRange(port, port + 100)
   }).then(function(newPort) {
-    var app = express()
-    var compiler = webpack(webpackConfig)
+    const app = express()
+    const compiler = webpack(webpackConfig)
 
-    var webpackDevMiddleware = devMiddleware(compiler, {
+    const webpackDevMiddleware = devMiddleware(compiler, {
       // logLevel: 'silent',
       publicPath: webpackConfig.output.publicPath
     })
 
-    var webpackHotMiddleware = hotMiddleware(compiler, {
+    const webpackHotMiddleware = hotMiddleware(compiler, {
       log: false,
       heartbeat: 2000,
       path: '/__hmr'
@@ -36,7 +36,7 @@ var main = function() {
       res.sendStatus(200)
     })
 
-    var staticPath = path.posix.join(config.dev.assetsPublicPath, config.base.assetsSubDirectory)
+    const staticPath = path.posix.join(config.dev.assetsPublicPath, config.base.assetsSubDirectory)
     app.use(staticPath, express.static('./static'))
 
     console.log('> Starting dev server...')

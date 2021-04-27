@@ -1,15 +1,15 @@
-var os = require('os')
-var path = require('path')
-var merge = require('webpack-merge')
-var TerserPlugin = require('terser-webpack-plugin')
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
-var CompressionWebpackPlugin = require('compression-webpack-plugin')
+const os = require('os')
+const path = require('path')
+const merge = require('webpack-merge')
+const TerserPlugin = require('terser-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 // js默认开启压缩
 // css压缩插件
-var OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-var utils = require('./utils')
-var config = require('../../config')
-var baseWebpackConfig = require('./webpack.base.conf')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const utils = require('./utils')
+const config = require('../../config')
+const baseWebpackConfig = require('./webpack.base.conf')
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',

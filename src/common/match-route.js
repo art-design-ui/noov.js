@@ -1,5 +1,4 @@
 
-// src/share/match-route.js
 //路由匹配，然后根据匹配的路由得到对应的组件
 
 import { matchPath } from 'react-router';

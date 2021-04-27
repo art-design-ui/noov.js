@@ -8,14 +8,17 @@ import App from './router'
 import { BrowserRouter } from 'react-router-dom'
 import routeList from './route-config'
 // @ts-ignore
-import matchRoute from '../../share/match-route'
+import matchRoute from '../../common/match-route'
 // @ts-ignore
-import proConfig from '../../share/pro-config'
+import proConfig from '../../common/pro-config'
 
 function renderDom(routeList: any) {
         console.log('渲染index')
-        //渲染index
-        ReactDOM.hydrate(
+        // 渲染index
+        // @ts-ignore
+        const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
+        console.log('routeList===>',routeList)
+        renderMethod(
                 <BrowserRouter>
                         <App routeList={routeList} />
                 </BrowserRouter>,
@@ -36,6 +39,7 @@ function clientRender(routeList: any) {
 
         //查找路由
         let matchResult = matchRoute(document.location.pathname, routeList)
+        console.log('matchResult',matchResult)
         let { targetRoute } = matchResult
         console.log('targetRoute===>', targetRoute)
         if (targetRoute) {

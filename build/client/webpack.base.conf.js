@@ -1,11 +1,13 @@
-var os = require('os')
-var path = require('path')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var ProgressBarPlugin = require('progress-bar-webpack-plugin')
-// var ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const os = require('os')
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const WebpackBar = require('webpackbar');
 
-var utils = require('./utils')
-var config = require('../../config')
+// const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+
+const utils = require('./utils')
+const config = require('../../config')
 
 module.exports = {
   resolve: {
@@ -78,8 +80,12 @@ module.exports = {
   },
 
   plugins: [
-    new ProgressBarPlugin(),
+    // new ProgressBarPlugin(),
     // new ForkTsCheckerWebpackPlugin(),
+    new WebpackBar({
+      name: 'client',
+      color: "green",
+  }),
     new HtmlWebpackPlugin({
       title: config.base.title,
       filename: 'index.html',

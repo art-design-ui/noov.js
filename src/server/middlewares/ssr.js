@@ -1,7 +1,3 @@
-// /src/server/middlewares/react-ssr.js
-
-//完成 react ssr 工作的中间件
-//引入Index 组件
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 
@@ -15,15 +11,15 @@ import routeList from '../../client/main/route-config'
 //自定义 provider 用来传递数据
 // import Provider from '../../client/app/provider';
 
-import matchRoute from '../../share/match-route';
+import matchRoute from '../../common/match-route';
 
 import App from '../../client/main/router';
 
-import getStaticRoutes from '../common/get-static-routes';
+import getStaticRoutes from '../utils/get-static-routes';
 
-import proConfig from '../../share/pro-config';
+import proConfig from '../../common/pro-config';
 
-const getAssets = require('../common/assets');
+const getAssets = require('../utils/assets');
 
 
 console.log('routeList====>',routeList)
@@ -89,10 +85,11 @@ export default async (ctx, next) => {
         <App routeList={staticRoutesList}></App>
     </StaticRouter>);
     }
-
+    console.log('html===>',html)
     //静态资源
     const assetsMap = getAssets();
-
+    
+    // 这里需要插入热更新资源包
     ctx.body = `<!DOCTYPE html>
             <html lang="en">
             <head>

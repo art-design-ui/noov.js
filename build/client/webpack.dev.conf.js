@@ -1,11 +1,11 @@
-var webpack = require('webpack')
-var {merge} = require('webpack-merge')
-var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-var FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const webpack = require('webpack')
+const {merge} = require('webpack-merge')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 // var HtmlWebpackVariablePlugin = require('../deploy/hwp-variable')
 
-var utils = require('./utils')
-var baseWebpackConfig = require('./webpack.base.conf')
+const utils = require('./utils')
+const baseWebpackConfig = require('./webpack.base.conf')
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',

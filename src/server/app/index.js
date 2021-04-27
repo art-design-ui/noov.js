@@ -1,24 +1,20 @@
-//web 服务启动入口对象
-
-import reactSsr from '../middlewares/react-ssr';
-import Koa from 'koa2';
+import ssrMiddleware from '../middlewares/ssr';
+import Koa from 'koa';
 import koaStatic from 'koa-static';
-import path from 'path';
-import proConfig from '../../share/pro-config.js';
+import proConfig from '../../common/pro-config.js';
 
 const port = proConfig.nodeServerPort || process.env.PORT;
 
-console.log('port',port)
 const app = new Koa();
 
 
-//设置可访问的静态资源
-//TODO:生产换需要删除此功能
-app.use(koaStatic('./dist/static'));
+// 设置可访问的静态资源
+// TODO 生产时打开
+// app.use(koaStatic('./dist/static'));
 
 
 //ssr 中间件
-app.use(reactSsr);
+app.use(ssrMiddleware);
 
 //启动服务
 app.listen(port);

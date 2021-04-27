@@ -1,6 +1,6 @@
 // src/server/common/assets.js
 
-const proConfig = require('../../share/pro-config');
+const proConfig = require('../../common/pro-config');
 
 //生产环境中 静态资源的处理
 module.exports = function () {

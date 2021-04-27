@@ -1,21 +1,21 @@
-var path = require('path')
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-var theme = path.join(__dirname, '../../src/client/style/antd.override.theme.less')
+const theme = path.join(__dirname, '../../src/client/style/antd.override.theme.less')
 
-var config = require('../../config')
+const config = require('../../config')
 
 exports.resolve = function(dir) {
   return path.join(__dirname, '../../', dir)
 }
 
 exports.assetsPath = function(_path) {
-  var assetsSubDirectory = config.base.assetsSubDirectory
+  const assetsSubDirectory = config.base.assetsSubDirectory
   return path.posix.join(assetsSubDirectory, _path)
 }
 
 exports.styleLoaders = function(options) {
-  var baseLoaders = [
+  const baseLoaders = [
     options.extract ? MiniCssExtractPlugin.loader : 'style-loader',
     {
       loader: 'css-loader',
@@ -27,7 +27,7 @@ exports.styleLoaders = function(options) {
     { loader: 'postcss-loader' }
   ]
 
-  var output = []
+  const output = []
   output.push({
     test: /\.(css|less)$/,
     exclude: /node_modules/,
@@ -51,7 +51,7 @@ exports.styleLoaders = function(options) {
       {
         loader: 'less-loader',
         options: {
-          modifyVars: {
+          modifyconsts: {
             hack: `true; @import "${theme}";` // Override with less file
           },
           javascriptEnabled: true

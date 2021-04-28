@@ -11,8 +11,15 @@ import routeList from './route-config'
 import matchRoute from '../../common/match-route'
 // @ts-ignore
 import proConfig from '../../common/pro-config'
+  //  @ts-ignore
+import StyleContext from 'isomorphic-style-loader/StyleContext'
 
 function renderDom(routeList: any) {
+        //  @ts-ignore
+        const insertCss = (...styles) => {
+                const removeCss = styles.map(style => style._insertCss());//客户端执行，插入style
+                return () => removeCss.forEach(dispose => dispose());//组件卸载时 移除当前的 style 标签
+        }
         console.log('渲染index')
         // 渲染index
         // @ts-ignore
@@ -20,8 +27,9 @@ function renderDom(routeList: any) {
         console.log('routeList===>',routeList)
         renderMethod(
                 <BrowserRouter>
-                        <App routeList={routeList} />
-                </BrowserRouter>,
+                <StyleContext.Provider value={{ insertCss }}>
+                        <App routeList={routeList} /></StyleContext.Provider>
+        </BrowserRouter>,
                 document.getElementById('app'),
         )
 }

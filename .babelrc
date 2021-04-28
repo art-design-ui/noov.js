@@ -30,8 +30,8 @@
             "modules": false
           }
         ]
-      ],
-      "plugins": ["./build/babel/plugin/no-require-css"]
+      ]
+      // "plugins": ["./build/babel/plugin/no-require-css"]
     }
   }
 }

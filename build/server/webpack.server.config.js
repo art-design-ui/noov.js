@@ -25,6 +25,20 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(le|c)ss$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2
+            }
+          },
+          'postcss-loader',
+          'less-loader'
+        ]
+      },
+      {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/

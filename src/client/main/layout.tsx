@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { hot } from 'react-hot-loader/root';
 
-import './layout.less';
+// import './layout.less';
 
 class Index extends React.Component {
   constructor(props: any) {

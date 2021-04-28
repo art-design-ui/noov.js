@@ -21,7 +21,23 @@ module.exports = merge(baseWebpackConfig, {
   },
 
   module: {
-    rules: [...utils.styleLoaders({})]
+    // rules: [...utils.styleLoaders({})]
+    rules:[
+      {
+        test: /\.(le|c)ss$/,
+        use: [
+          'isomorphic-style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2
+            }
+          },
+          'postcss-loader',
+          'less-loader'
+        ]
+      },
+    ]
   },
 
   // devtool: '#cheap-module-eval-source-map',

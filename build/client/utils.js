@@ -16,7 +16,9 @@ exports.assetsPath = function(_path) {
 
 exports.styleLoaders = function(options) {
   const baseLoaders = [
-    options.extract ? MiniCssExtractPlugin.loader : 'style-loader',
+    {
+      loader:'isomorphic-style-loader'
+    },
     {
       loader: 'css-loader',
       // options: {
@@ -38,12 +40,13 @@ exports.styleLoaders = function(options) {
       }
     ]
   })
-
   output.push({
     test: /\.less$/,
     include: /node_modules\/antd/,
     use: [
-      options.extract ? MiniCssExtractPlugin.loader : 'style-loader',
+      {
+        loader:'isomorphic-style-loader'
+      },
       {
         loader: 'css-loader'
       },

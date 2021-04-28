@@ -46,10 +46,13 @@ const startNodeServer = () => {
   )
 }
 
+let flag=false
+
 // 控制台输出信息
 function print(data) {
   let str = data.toString()
-  if (str.indexOf(constantCode.SVRCODECOMPLETED) > -1) {
+  if (str.indexOf(constantCode.SVRCODECOMPLETED) > -1&&!flag) {
+    flag=true
     // 服务端代码编译完成
     startNodeServer() // 重启 node 服务
   } else {

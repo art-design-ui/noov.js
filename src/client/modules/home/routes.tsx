@@ -13,11 +13,12 @@ function pageNotFound({staticContext}:any) {
 export default [
   {
     path: '/',
-    component: () => <Home />
+    component: () => <Home />,
+    exact:true
   },
   {
     path: '*',
     component: pageNotFound,
-    exact: true
+    // exact: true
   }
 ]

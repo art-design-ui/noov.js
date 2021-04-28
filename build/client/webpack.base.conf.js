@@ -93,16 +93,9 @@ module.exports = {
       inject: true
     })
   ],
-
     optimization: {
         splitChunks: {
             cacheGroups: {
-                styles: {
-                    name: 'styles',
-                    test: /\.less$/,
-                    chunks: 'all',
-                    enforce: true,
-                },
                 libs: { // 抽离第三方库
                     test: /node_modules/, // 指定是node_modules下的第三方包
                     chunks: 'initial',

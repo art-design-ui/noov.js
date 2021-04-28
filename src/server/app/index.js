@@ -7,10 +7,23 @@ const port = proConfig.nodeServerPort || process.env.PORT;
 
 const app = new Koa();
 
-
+/* 代理配置 start */
+const proxy = require('koa2-proxy-middleware'); //引入代理模块
+const options = {
+    targets: {
+        // (.*) means anything
+        '/__hmr': {
+            target: 'http://localhost:8080',
+            changeOrigin: true,
+        },
+    }
+}
+app.use(
+    proxy(options)
+)
 // 设置可访问的静态资源
 // TODO 生产时打开
-// app.use(koaStatic('./dist/static'));
+app.use(koaStatic('./dist/static'));
 
 
 //ssr 中间件

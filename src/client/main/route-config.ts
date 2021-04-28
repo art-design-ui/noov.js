@@ -12,5 +12,4 @@ try {
 
 console.log('>>> routes: ', JSON.stringify(routes))
 
-
 export default routes

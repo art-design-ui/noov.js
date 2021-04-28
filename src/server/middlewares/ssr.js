@@ -23,6 +23,12 @@ import getAssets from '../utils/assets'
 //css 同构的上下文
 import StyleContext from 'isomorphic-style-loader/StyleContext'
 
+import { Provider } from 'react-redux'
+
+import store from '../../client/store/reducers.ts'
+
+//得到 store,默认没有数据
+
 export default async (ctx, next) => {
   console.log(process.env.NODE_ENV)
   console.log(typeof process.env.NODE_ENV)
@@ -45,13 +51,14 @@ export default async (ctx, next) => {
   let matchResult = await matchRoute(path, staticRoutesList)
   let { targetRoute, targetMatch } = matchResult
 
-  //得到数据
+  //进行数据预取，更新 store 内的数据
   let fetchDataFn,
     fetchResult = {}
   if (targetRoute) {
     fetchDataFn = targetRoute.component ? targetRoute.component.getInitialProps : null
     if (fetchDataFn) {
-      fetchResult = await fetchDataFn()
+      console.log('store', store)
+      fetchResult = await fetchDataFn({ store }) //更新 state
     }
   }
 
@@ -76,11 +83,13 @@ export default async (ctx, next) => {
   const insertCss = (...styles) => styles.forEach(style => css.add(style._getContent()))
 
   const html = renderToString(
-    <StaticRouter location={path} context={context}>
-      <StyleContext.Provider value={{ insertCss }}>
-        <App routeList={staticRoutesList}></App>
-      </StyleContext.Provider>
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location={path} context={context}>
+        <StyleContext.Provider value={{ insertCss }}>
+          <App routeList={staticRoutesList}></App>
+        </StyleContext.Provider>
+      </StaticRouter>
+    </Provider>
   )
 
   const styles = []
@@ -110,6 +119,9 @@ export default async (ctx, next) => {
     </textarea>
 </body>
 </html>
+<script>
+window.__IS__SSR__=${proConfig.__IS_SSR__};
+</script>
  ${assetsMap.js.join('')}
 `
 

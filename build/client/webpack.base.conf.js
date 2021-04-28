@@ -1,7 +1,8 @@
 const os = require('os')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const WebpackBar = require('webpackbar');
+const WebpackBar = require('webpackbar')
+const webpack = require('webpack')
 
 // const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 // const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
@@ -39,9 +40,9 @@ module.exports = {
         test: /\.ts|\.tsx/,
         use: [
           {
-            loader: 'babel-loader',
-          },
-        ],
+            loader: 'babel-loader'
+          }
+        ]
       },
       {
         test: /\.ts|\.tsx|\.js|\.json/,
@@ -49,8 +50,8 @@ module.exports = {
         loader: 'eslint-loader',
         options: {
           fix: true,
-          cache: true,
-        },
+          cache: true
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
@@ -84,24 +85,30 @@ module.exports = {
     // new ForkTsCheckerWebpackPlugin(),
     new WebpackBar({
       name: 'client',
-      color: "green",
-  }),
+      color: 'green'
+    }),
     new HtmlWebpackPlugin({
       title: config.base.title,
       filename: 'index.html',
       template: path.resolve(__dirname, '../../templates/index.ejs'),
       inject: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: '"development"' },
+      __IS_PROD__: false,
+      __SERVER__: false
     })
   ],
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                libs: { // 抽离第三方库
-                    test: /node_modules/, // 指定是node_modules下的第三方包
-                    chunks: 'initial',
-                    name: 'libs'// 打包后的文件名，任意命名    
-                }
-            }
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        libs: {
+          // 抽离第三方库
+          test: /node_modules/, // 指定是node_modules下的第三方包
+          chunks: 'initial',
+          name: 'libs' // 打包后的文件名，任意命名
         }
-    },
+      }
+    }
+  }
 }

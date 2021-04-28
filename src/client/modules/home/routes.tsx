@@ -1,11 +1,10 @@
 import * as React from 'react'
-import { withRouter } from 'react-router-dom'
+import AsyncLoader from '@/components/asyncLoader';
 
-import Home from './index'
 
-function pageNotFound({staticContext}:any) {
-  if(staticContext){
-      staticContext.code=404;
+function pageNotFound({ staticContext }: any) {
+  if (staticContext) {
+    staticContext.code = 404;
   }
 
   return <div>404页面</div>
@@ -13,8 +12,8 @@ function pageNotFound({staticContext}:any) {
 export default [
   {
     path: '/',
-    component: () => <Home />,
-    exact:true
+    component: AsyncLoader(() => import('./index')),
+    exact: true
   },
   {
     path: '*',

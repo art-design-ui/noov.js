@@ -11,62 +11,61 @@ import routeList from './route-config'
 import matchRoute from '../../common/match-route'
 // @ts-ignore
 import proConfig from '../../common/pro-config'
-  //  @ts-ignore
+//  @ts-ignore
 import StyleContext from 'isomorphic-style-loader/StyleContext'
 
 function renderDom(routeList: any) {
-        //  @ts-ignore
-        const insertCss = (...styles) => {
-                const removeCss = styles.map(style => style._insertCss());//客户端执行，插入style
-                return () => removeCss.forEach(dispose => dispose());//组件卸载时 移除当前的 style 标签
-        }
-        console.log('渲染index')
-        // 渲染index
-        // @ts-ignore
-        const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate;
-        console.log('routeList===>',routeList)
-        renderMethod(
-                <BrowserRouter>
-                <StyleContext.Provider value={{ insertCss }}>
-                        <App routeList={routeList} /></StyleContext.Provider>
-        </BrowserRouter>,
-                document.getElementById('app'),
-        )
+  //  @ts-ignore
+  const insertCss = (...styles) => {
+    const removeCss = styles.map(style => style._insertCss()) // 客户端执行，插入style
+    return () => removeCss.forEach(dispose => dispose()) // 组件卸载时 移除当前的 style 标签
+  }
+  console.log('渲染index')
+  // 渲染index
+  // @ts-ignore
+  const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
+  console.log('routeList===>', routeList)
+  renderMethod(
+    <BrowserRouter>
+      <StyleContext.Provider value={{ insertCss }}>
+        <App routeList={routeList} />
+      </StyleContext.Provider>
+    </BrowserRouter>,
+    document.getElementById('app')
+  )
 }
 
 function clientRender(routeList: any) {
+  if (document.getElementById('ssrTextInitData')) {
+    // @ts-ignore
+    let value = document.getElementById('ssrTextInitData').value
+    let initialData = JSON.parse(value && value.replace(/\\n/g, ''))
+    // @ts-ignore
+    window.__INITIAL_DATA__ = initialData || {}
+  }
 
-        if (document.getElementById('ssrTextInitData')) {
-                // @ts-ignore
-                let value = document.getElementById('ssrTextInitData').value
-                let initialData = JSON.parse(value && value.replace(/\\n/g, ''))
-                // @ts-ignore
-                window.__INITIAL_DATA__ = initialData || {}
-        }
-
-
-        //查找路由
-        let matchResult = matchRoute(document.location.pathname, routeList)
-        console.log('matchResult',matchResult)
-        let { targetRoute } = matchResult
-        console.log('targetRoute===>', targetRoute)
-        if (targetRoute) {
-                //预加载 等待异步脚本加载完成
-                // if (targetRoute.component[proConfig.asyncComponentKey]) {
-                // targetRoute
-                //         .component()
-                //         .then((res: any) => {
-                //                 //异步组件加载完成后再渲染页面
-                //                 console.log('异步组件加载完成.')
-                //设置已加载完的组件，否则需要重新请求
-                // targetRoute.component = res ? res.default : null
-                renderDom(routeList)
-                // })
-                // }
-        } else {
-                console.log('renderDom==>', renderDom)
-                renderDom(routeList)
-        }
+  //查找路由
+  let matchResult = matchRoute(document.location.pathname, routeList)
+  console.log('matchResult', matchResult)
+  let { targetRoute } = matchResult
+  console.log('targetRoute===>', targetRoute)
+  if (targetRoute) {
+    //预加载 等待异步脚本加载完成
+    // if (targetRoute.component[proConfig.asyncComponentKey]) {
+    // targetRoute
+    //         .component()
+    //         .then((res: any) => {
+    //                 //异步组件加载完成后再渲染页面
+    //                 console.log('异步组件加载完成.')
+    //设置已加载完的组件，否则需要重新请求
+    // targetRoute.component = res ? res.default : null
+    renderDom(routeList)
+    // })
+    // }
+  } else {
+    console.log('renderDom==>', renderDom)
+    renderDom(routeList)
+  }
 }
 
 //渲染入口
@@ -75,6 +74,6 @@ clientRender(routeList)
 //开发环境才会开启
 // @ts-ignore
 if (process.env.NODE_ENV === 'development' && module.hot) {
-        // @ts-ignore
-        module.hot.accept()
+  // @ts-ignore
+  module.hot.accept()
 }

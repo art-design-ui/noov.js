@@ -21,10 +21,6 @@ exports.styleLoaders = function(options) {
     },
     {
       loader: 'css-loader',
-      // options: {
-      //   modules: true,
-      //   localIdentName: '[path]-[local]-[hash:base64:5]'
-      // }
     },
     { loader: 'postcss-loader' }
   ]
@@ -63,14 +59,14 @@ exports.styleLoaders = function(options) {
     ]
   })
 
-  output.push({
-    test: /\.css$/,
-    include: /node_modules/,
-    use: [
-      options.extract ? MiniCssExtractPlugin.loader : 'style-loader',
-      { loader: 'css-loader' }
-    ]
-  })
+  // output.push({
+  //   test: /\.css$/,
+  //   include: /node_modules/,
+  //   use: [
+  //     options.extract ? MiniCssExtractPlugin.loader : 'style-loader',
+  //     { loader: 'css-loader' }
+  //   ]
+  // })
 
   return output
 }

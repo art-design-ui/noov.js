@@ -30,7 +30,7 @@ module.exports = merge(baseWebpackConfig, {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2
+              importLoaders: 1
             }
           },
           'postcss-loader',
@@ -44,7 +44,7 @@ module.exports = merge(baseWebpackConfig, {
 
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(), // 热更新这块标记下
     // new HtmlWebpackVariablePlugin(process.env.VARS ? { map: process.env.VARS } : {}),
     new BundleAnalyzerPlugin.BundleAnalyzerPlugin({
       openAnalyzer: false,

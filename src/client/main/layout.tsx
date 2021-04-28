@@ -3,7 +3,9 @@ import { Link, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { hot } from 'react-hot-loader/root';
 
-// import './layout.less';
+import css from  './layout.less';
+
+import withStyles from 'isomorphic-style-loader/withStyles'
 
 class Index extends React.Component {
   constructor(props: any) {
@@ -19,4 +21,4 @@ class Index extends React.Component {
   }
 }
 
-export default hot(Index);
+export default withStyles(css)(hot(Index));

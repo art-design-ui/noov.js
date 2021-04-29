@@ -15,15 +15,20 @@ import proConfig from '../../common/pro-config'
 import StyleContext from 'isomorphic-style-loader/StyleContext'
 import { Provider } from 'react-redux'
 
-import store from '@/store/reducers'
+import getStore from '@/store/reducers'
 
-function renderDom(routeList: any) {
+function renderDom(routeList: any, initStoreState?: any) {
   //  @ts-ignore
   const insertCss = (...styles) => {
     const removeCss = styles.map(style => style._insertCss()) // 客户端执行，插入style
     return () => removeCss.forEach(dispose => dispose()) // 组件卸载时 移除当前的 style 标签
   }
-  // 渲染index
+  // !redux数据更新
+  const store = getStore(initStoreState)
+  // 服务端只需要获取state就行 我们方法的定义在redux就定义好了
+  console.log('同步更新的客户端store', store.getState())
+  // @ts-ignore
+  window.__STORE__ = store
   // @ts-ignore
   const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
   renderMethod(
@@ -39,12 +44,20 @@ function renderDom(routeList: any) {
 }
 
 function clientRender(routeList: any) {
+  let initialData: any = null
+  let initStoreState: any = null
   if (document.getElementById('ssrTextInitData')) {
     // @ts-ignore
     let value = document.getElementById('ssrTextInitData').value
-    let initialData = JSON.parse(value && value.replace(/\\n/g, ''))
+    initialData = JSON.parse(value && value.replace(/\\n/g, ''))
     // @ts-ignore
     window.__INITIAL_DATA__ = initialData || {}
+  }
+
+  if (document.getElementById('ssrTextInitStoreData')) {
+    // @ts-ignore
+    let value = document.getElementById('ssrTextInitStoreData').value
+    initStoreState = JSON.parse(value && value.replace(/\\n/g, ''))
   }
 
   //查找路由
@@ -53,7 +66,6 @@ function clientRender(routeList: any) {
   if (targetRoute) {
     //预加载 等待异步脚本加载完成
     if (targetRoute.component[proConfig.asyncComponentKey]) {
-      console.log('targetRoute===>', targetRoute)
       targetRoute
         .component()
         .props.load()
@@ -62,11 +74,10 @@ function clientRender(routeList: any) {
           console.log('异步组件加载完成.')
           //设置已加载完的组件，否则需要重新请求
           // targetRoute.component = res ? res.default : null
-          renderDom(routeList)
+          renderDom(routeList, initStoreState)
         })
     }
   } else {
-    console.log('renderDom==>', renderDom)
     renderDom(routeList)
   }
 }

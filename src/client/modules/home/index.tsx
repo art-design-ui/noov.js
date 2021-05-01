@@ -30,7 +30,7 @@ Home.getInitialProps = ({ store }: any) => {
 }
 
 const mapStateToProps = (state: any) => ({
-  home: state.home,
+  home: state.home
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

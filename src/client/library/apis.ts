@@ -1,4 +1,4 @@
-import Apis from '@forchange/apis'
+import createInstance from 'art-apis'
 import { getTokenKey, getToken, parseQuery, setCookie, unsetCookie } from './utils'
 
 import env from '../config/env'
@@ -40,7 +40,7 @@ for (const key of Object.keys(serverMap)) {
   serverMap[key].baseURL = baseURL
 }
 
-Apis.useReq((config: any) => {
+createInstance.useReq((config: any) => {
   let token = getToken()
   const dToken = parseQuery('FC_SESSION')
   if (dToken) {
@@ -64,7 +64,7 @@ Apis.useReq((config: any) => {
   return config
 })
 
-Apis.useRes(
+createInstance.useRes(
   (res: any) => res.data,
   (err: any) => {
     const status = err.response.status
@@ -77,16 +77,9 @@ Apis.useRes(
         document.body.innerHTML = '<div>403 您暂无对应权限</div>'
       }
     }
-    // 原来axios拦截器只是中间件处理而已 不会终止操作
-    // 我以为是会的
-    // console.log(err)
-    // if (err.response) {
-    //   return Promise.reject(err.response)
-    // }
-    // return Promise.reject(err)
   }
 )
 
-const apis = new Apis(serverMap, apiMap)
+const apis = createInstance(serverMap, apiMap)
 
 export default apis

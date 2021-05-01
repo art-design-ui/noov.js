@@ -6,12 +6,12 @@
   // 也可以不用airbnb-typescript
   // 因为你都用@typescript-eslint/parser解析器了，可以识别
   "extends": [
-    "plugin:react/recommended",
-    "airbnb",
+    // 你配置了airbnb这个规则 就不用再配置多个 选择一个就行 当然也可以多个 重复的话就覆盖
+    // "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
+    "airbnb",
     "plugin:prettier/recommended",
-    "prettier",
-    "prettier/@typescript-eslint",
+    "prettier", // 可能会覆盖eslint-config-airbnb的rule配置 不需要prettier/airbnb 理清楚这种关系 ===>基础配置
     "prettier/react"
   ],
   "parser": "@typescript-eslint/parser",

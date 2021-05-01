@@ -81,7 +81,7 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "get-port": "^5.1.1",
     "html-webpack-plugin": "^5.3.1",
-    "husky": "^6.0.0",
+    "husky": "^4.2.5",
     "isomorphic-style-loader": "^5.1.0",
     "koa2-proxy-middleware": "0.0.4",
     "less": "^4.1.1",

@@ -16,7 +16,8 @@
     "gc": "git-cz",
     "stylelint:fix": "stylelint './src/**/*.less' --syntax less --fix",
     "eslint:fix": "eslint  --color --fix ./src",
-    "format": "prettier --write ./src"
+    "format": "prettier --write ./src",
+    "release": "standard-version"
   },
   "author": "vnues",
   "license": "ISC",
@@ -96,12 +97,12 @@
     "react-hot-loader": "^4.13.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
+    "standard-version": "^9.2.0",
     "style-loader": "^2.0.0",
     "stylelint": "^13.13.0",
     "stylelint-config-recommended": "^5.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "ts-loader": "^9.1.1",
-    "ts-node": "^9.1.1",
     "typescript": "^4.2.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.35.1",
@@ -111,16 +112,6 @@
     "webpack-merge": "^5.7.3",
     "webpack-node-externals": "^3.0.0",
     "webpackbar": "^5.0.0-3"
-  },
-  "lint-staged": {
-    "sr/**/*.ts?(x)": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.less": [
-      "prettier --write",
-      "stylelint --syntax less --fix"
-    ]
   },
   "husky": {
     "hooks": {
@@ -132,5 +123,15 @@
     "commitizen": {
       "path": "node_modules/cz-customizable"
     }
+  },
+  "lint-staged": {
+    "sr/**/*.ts?(x)": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.less": [
+      "prettier --write",
+      "stylelint --syntax less --fix"
+    ]
   }
 }

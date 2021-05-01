@@ -25,7 +25,11 @@ import StyleContext from 'isomorphic-style-loader/StyleContext'
 
 import { Provider } from 'react-redux'
 
-import store from '../../client/store/reducers.ts'
+import getStore from '../../client/store/reducers.ts'
+
+const store = getStore()
+
+console.log('store', store)
 
 //得到 store,默认没有数据
 
@@ -57,7 +61,6 @@ export default async (ctx, next) => {
   if (targetRoute) {
     fetchDataFn = targetRoute.component ? targetRoute.component.getInitialProps : null
     if (fetchDataFn) {
-      console.log('store', store)
       fetchResult = await fetchDataFn({ store }) //更新 state
     }
   }
@@ -115,7 +118,10 @@ export default async (ctx, next) => {
        ${html}
     </div>
     <textarea id="ssrTextInitData" style="display:none;">
-    ${JSON.stringify(fetchResult)}
+    ${JSON.stringify(fetchResult ? fetchResult : {})}
+    </textarea>
+    <textarea id="ssrTextInitStoreData" style="display:none;">
+    ${JSON.stringify(store.getState())}
     </textarea>
 </body>
 </html>

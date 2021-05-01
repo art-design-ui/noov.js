@@ -17,12 +17,27 @@ export default createModel<any>()({
     }
   },
   effects: (dispatch: any) => {
-    const { players } = dispatch
+    const { home } = dispatch
     return {
       async getPlayers(): Promise<any> {
         let response = await fetch('https://www.balldontlie.io/api/v1/players')
         let { data }: { data: HomeState[] } = await response.json()
-        players.SET_PLAYERS(data)
+        home.SET_PLAYERS(data)
+      },
+      // ! 约定的方法
+      getInitialData(){
+        return new Promise(resolve=>{
+          //延迟 500ms 返回数据
+            setTimeout(() => {
+              const data = {
+              test:'123'
+              }
+              resolve(data);
+              //更新状态
+              console.log('players',home)
+              home.SET_PLAYERS([800,800,800])
+            }, 500);
+          })
       }
     }
   }

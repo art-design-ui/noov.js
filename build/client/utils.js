@@ -59,14 +59,14 @@ exports.styleLoaders = function(options) {
     ]
   })
 
-  // output.push({
-  //   test: /\.css$/,
-  //   include: /node_modules/,
-  //   use: [
-  //     options.extract ? MiniCssExtractPlugin.loader : 'style-loader',
-  //     { loader: 'css-loader' }
-  //   ]
-  // })
+  output.push({
+    test: /\.css$/,
+    include: /node_modules/,
+    use: [
+      options.extract ? MiniCssExtractPlugin.loader : 'style-loader',
+      { loader: 'css-loader' }
+    ]
+  })
 
   return output
 }

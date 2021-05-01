@@ -19,7 +19,7 @@ module.exports = function () {
         assets.js.push(`<script type="text/javascript"  src="${devHost}/libs.js"></script>`);
         assets.js.push(`<script type="text/javascript"  src="${devHost}/main.js"></script>`); // 写死的 
         // 这样就说明有缓存 可能没出来效果
-        assets.js.push(`<script type="text/javascript"  src="${devHost}/styles.js"></script>`);
+        // assets.js.push(`<script type="text/javascript"  src="${devHost}/styles.js"></script>`);
         // assets.css.push(`<link rel="stylesheet" type="text/css" href="${devHost}/styles.css" />`);
     } else {
         //生产环境 从 asset-manifest.json 读取资源

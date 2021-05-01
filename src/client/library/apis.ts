@@ -27,7 +27,6 @@ try {
 for (const key of Object.keys(serverMap)) {
   let baseURL = serverMap[key].baseMap[env.ENV]
   if (env.ENV === 'dev') {
-    // @ts-ignore
     baseURL = `${baseURL}${window.CI_DEV_BRANCH}`
   }
 

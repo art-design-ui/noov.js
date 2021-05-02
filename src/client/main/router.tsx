@@ -1,24 +1,15 @@
-// src/client/router/indxex.js
-//路由配置文件
+import Layout from './layout'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
+const App = ({ routeList }: any) => (
+  <Layout>
+    <Switch>
+      {routeList.map((item: any) => (
+        <Route key={item.path} {...item} />
+      ))}
+    </Switch>
+  </Layout>
+)
 
-import Layout from './layout';
-
-import React from 'react';
-import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
-
-function App({ routeList }: any) {
-    return (
-        <Layout>
-            <Switch>
-                {
-                    routeList.map((item: any) => {
-                        return <Route key={item.path} {...item} />
-                    })
-                }
-            </Switch>
-        </Layout>
-    );
-}
-
-export default App;
+export default App

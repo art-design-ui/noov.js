@@ -1,42 +1,40 @@
-//路由静态化处理
+// 路由静态化处理
 
-import proConfig from '../../common/pro-config';
+import proConfig from '../../common/pro-config'
 
-
-const checkIsAsyncRoute = (component) => {
-    return component && component[proConfig.asyncComponentKey];
+const checkIsAsyncRoute = component => {
+  return component && component[proConfig.asyncComponentKey]
 }
 
-//将路由转换为静态路由
+// 将路由转换为静态路由
 async function getStaticRoutes(routes) {
+  const key = '__dynamics_route_to_static'
+  if (global[key]) {
+    console.log('cache route')
+    return global[key]
+  }
 
-    const key ='__dynamics_route_to_static';
-    if (global[key]){
-        console.log('cache route');
-        return global[key];
-    }
+  const len = routes.length
+  let i = 0
+  const staticRoutes = []
 
-    let len = routes.length,
-        i = 0;
-    const staticRoutes = [];
-
-    for (; i < len; i++) {
-        let item = routes[i];
-        if (checkIsAsyncRoute(item.component)) {
-            staticRoutes.push({
-                ...item,
-                ...{
-                    component: (await item.component().props.load()).default
-                }
-            });
-        } else {
-            staticRoutes.push({
-                ...item
-            });
+  for (; i < len; i++) {
+    const item = routes[i]
+    if (checkIsAsyncRoute(item.component)) {
+      staticRoutes.push({
+        ...item,
+        ...{
+          component: (await item.component().props.load()).default
         }
+      })
+    } else {
+      staticRoutes.push({
+        ...item
+      })
     }
-    global[key]=staticRoutes;
-    return staticRoutes; //返回静态路由
+  }
+  global[key] = staticRoutes
+  return staticRoutes // 返回静态路由
 }
 
-export default getStaticRoutes;
+export default getStaticRoutes

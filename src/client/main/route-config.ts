@@ -1,10 +1,10 @@
-let routes: any[] = []
+const routes: any[] = []
 
 try {
   const context = require.context(`../modules`, true, /.*\/routes\.tsx?$/)
   context.keys().forEach((key: string) => {
     const route = context(key).default
-    routes = routes.concat(route)
+    routes.push(route)
   })
 } catch (err) {
   console.warn(err.message)

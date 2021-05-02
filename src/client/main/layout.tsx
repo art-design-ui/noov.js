@@ -1,23 +1,20 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { withRouter } from 'react-router'
 import { hot } from 'react-hot-loader/root'
 
-// @ts-ignore
 import css from './layout.less'
 
 import withStyles from 'isomorphic-style-loader/withStyles'
 
-class Index extends React.PureComponent<any, any> {
-  constructor(props: any) {
-    super(props)
-  }
+interface Istate {}
 
+interface IProps {}
+class Index extends React.PureComponent<Istate, IProps> {
   render() {
+    const { children } = this.props
     return (
       <div className="layout-box">
         <h1>koa+react+ssr</h1>
-        {this.props.children}
+        {children}
       </div>
     )
   }

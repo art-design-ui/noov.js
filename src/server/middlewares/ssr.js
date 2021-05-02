@@ -6,9 +6,11 @@ import { StaticRouter, Route, matchPath } from 'react-router'
 
 // import Layout from '../../client/app/layout';//如果有 layout 组件，也需要一起转换为 html
 
+import StyleContext from 'isomorphic-style-loader/StyleContext'
+import { Provider } from 'react-redux'
 import routeList from '../../client/main/route-config'
 
-//自定义 provider 用来传递数据
+// 自定义 provider 用来传递数据
 // import Provider from '../../client/app/provider';
 
 import matchRoute from '../../common/match-route'
@@ -20,10 +22,7 @@ import getStaticRoutes from '../utils/get-static-routes'
 import proConfig from '../../common/pro-config'
 
 import getAssets from '../utils/assets'
-//css 同构的上下文
-import StyleContext from 'isomorphic-style-loader/StyleContext'
-
-import { Provider } from 'react-redux'
+// css 同构的上下文
 
 import getStore from '../../client/store/reducers.ts'
 
@@ -31,7 +30,7 @@ const store = getStore()
 
 console.log('store', store)
 
-//得到 store,默认没有数据
+// 得到 store,默认没有数据
 
 export default async (ctx, next) => {
   console.log(process.env.NODE_ENV)
@@ -39,7 +38,7 @@ export default async (ctx, next) => {
   console.log(__IS_PROD__)
   console.log(typeof __IS_PROD__)
   console.log('====')
-  const path = ctx.request.path
+  const { path } = ctx.request
 
   if (path.indexOf('.') > -1) {
     ctx.body = null
@@ -48,24 +47,24 @@ export default async (ctx, next) => {
 
   console.log('ctx.request.path', ctx.request.path)
 
-  //获得静态路由
+  // 获得静态路由
   const staticRoutesList = await getStaticRoutes(routeList)
 
-  //查找到的目标路由对象
-  let matchResult = await matchRoute(path, staticRoutesList)
-  let { targetRoute, targetMatch } = matchResult
+  // 查找到的目标路由对象
+  const matchResult = await matchRoute(path, staticRoutesList)
+  const { targetRoute, targetMatch } = matchResult
 
-  //进行数据预取，更新 store 内的数据
-  let fetchDataFn,
-    fetchResult = {}
+  // 进行数据预取，更新 store 内的数据
+  let fetchDataFn
+  let fetchResult = {}
   if (targetRoute) {
     fetchDataFn = targetRoute.component ? targetRoute.component.getInitialProps : null
     if (fetchDataFn) {
-      fetchResult = await fetchDataFn({ store }) //更新 state
+      fetchResult = await fetchDataFn({ store }) // 更新 state
     }
   }
 
-  let { page } = fetchResult || {}
+  const { page } = fetchResult || {}
 
   let tdk = {
     title: '默认标题 - my react ssr',
@@ -77,7 +76,7 @@ export default async (ctx, next) => {
     tdk = page.tdk
   }
 
-  //将预取数据在这里传递过去 组内通过props.staticContext获取
+  // 将预取数据在这里传递过去 组内通过props.staticContext获取
   const context = {
     initialData: fetchResult
   }
@@ -89,7 +88,7 @@ export default async (ctx, next) => {
     <Provider store={store}>
       <StaticRouter location={path} context={context}>
         <StyleContext.Provider value={{ insertCss }}>
-          <App routeList={staticRoutesList}></App>
+          <App routeList={staticRoutesList} />
         </StyleContext.Provider>
       </StaticRouter>
     </Provider>
@@ -97,11 +96,11 @@ export default async (ctx, next) => {
 
   const styles = []
   ;[...css].forEach(item => {
-    let [mid, content] = item[0]
+    const [mid, content] = item[0]
     styles.push(`<style id="s${mid}-0">${content}</style>`)
   })
 
-  //静态资源
+  // 静态资源
   const assetsMap = getAssets()
 
   ctx.body = `<!DOCTYPE html>
@@ -118,10 +117,10 @@ export default async (ctx, next) => {
        ${html}
     </div>
     <textarea id="ssrTextInitData" style="display:none;">
-    ${JSON.stringify(fetchResult ? fetchResult : {})}
+    ${JSON.stringify(fetchResult || {})}
     </textarea>
     <textarea id="ssrTextInitStoreData" style="display:none;">
-    ${JSON.stringify(store.getState())}
+    ${JSON.stringify(store.getState() || {})}
     </textarea>
 </body>
 </html>

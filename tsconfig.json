@@ -12,6 +12,7 @@
       "@style/*": ["src/client/style/*"],
       "@components/*": ["src/client/components/*"]
     },
+    "types": ["node", "webpack-env"],
     "target": "es5",
     "module": "esnext",
     "jsx": "react",
@@ -20,6 +21,13 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "importHelpers": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules"]

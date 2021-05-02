@@ -18,7 +18,6 @@ const getIp = require('../src/server/utils/get-ip')
 // node server port
 const nodeServerPort = proConfig.nodeServerPort
 
-
 const localHostIp = getIp()
 
 log(chalk.red('servers starting....'))
@@ -39,20 +38,16 @@ let nodeServerProcess = null
 const startNodeServer = () => {
   // 重启 node 服务
   nodeServerProcess && nodeServerProcess.kill()
-  nodeServerProcess = spawn(
-    'node',
-    ['./build/server/dev-server.js', localHostIp],
-    { stdio: 'inherit', shell: process.platform === 'win32' }
-  )
+  nodeServerProcess = spawn('node', ['./build/server/dev-server.js', localHostIp], {
+    stdio: 'inherit',
+    shell: process.platform === 'win32'
+  })
 }
-
-let flag=false
 
 // 控制台输出信息
 function print(data) {
   let str = data.toString()
-  if (str.indexOf(constantCode.SVRCODECOMPLETED) > -1&&!flag) {
-    flag=true
+  if (str.indexOf(constantCode.SVRCODECOMPLETED) > -1) {
     // 服务端代码编译完成
     startNodeServer() // 重启 node 服务
   } else {

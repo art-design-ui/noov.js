@@ -23,3 +23,7 @@ declare module '*.png' {
   const content: any
   export default content
 }
+
+declare module 'isomorphic-style-loader/StyleContext'
+
+declare module 'isomorphic-style-loader/withStyles'

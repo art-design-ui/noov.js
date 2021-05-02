@@ -130,7 +130,7 @@
     }
   },
   "lint-staged": {
-    "sr/**/*.ts?(x)": [
+    "src/**/*.ts?(x)": [
       "prettier --write",
       "eslint --fix"
     ],

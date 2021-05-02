@@ -1,19 +1,22 @@
-// src/server/common/assets.js
-const proConfig = require('../../common/pro-config')
-
+import map from '@dist/server/asset-manifest.json'
 // 生产环境中 静态资源的处理
-module.exports = function () {
+
+interface IAssets {
+  js: string[]
+  css: string[]
+}
+export default function getAssets(): any {
   // let devHost = '//localhost:9001';
   const devHost = `//localhost:${8080}`
 
   const jsFiles = ['libs.js', 'main.js', 'styles.js']
   const cssFiles = ['styles.css']
 
-  const assets = {
+  const assets: IAssets = {
     js: [],
     css: []
   }
-  if (!__IS_PROD__) {
+  if (!global.__IS_PROD__) {
     // 开发环境
     assets.js.push(`<script type="text/javascript"  src="${devHost}/libs.js"></script>`)
     assets.js.push(`<script type="text/javascript"  src="${devHost}/main.js"></script>`) // 写死的
@@ -22,14 +25,15 @@ module.exports = function () {
     // assets.css.push(`<link rel="stylesheet" type="text/css" href="${devHost}/styles.css" />`);
   } else {
     // 生产环境 从 asset-manifest.json 读取资源
-    const map = require('@dist/server/asset-manifest.json')
     jsFiles.forEach(item => {
-      if (map[item])
+      if (map[item]) {
         assets.js.push(`<script type="text/javascript"  src="${map[item]}"></script>`)
+      }
     })
     cssFiles.forEach(item => {
-      if (map[item])
+      if (map[item]) {
         assets.css.push(`<link rel="stylesheet" type="text/css" href="${map[item]}" />`)
+      }
     })
   }
 

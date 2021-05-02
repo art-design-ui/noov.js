@@ -1,6 +1,9 @@
 {
   "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
-  "plugins": ["@babel/plugin-transform-runtime"],
+  "plugins": [
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties"
+  ],
   "env": {
     "esm": {
       "presets": [
@@ -31,7 +34,6 @@
           }
         ]
       ]
-      // "plugins": ["./build/babel/plugin/no-require-css"]
     }
   }
 }

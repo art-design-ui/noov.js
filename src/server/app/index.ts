@@ -2,7 +2,7 @@ import Koa from 'koa'
 import koaStatic from 'koa-static'
 import proxy from 'koa2-proxy-middleware'
 import ssrMiddleware from '../middlewares/ssr'
-import proConfig from '../../common/pro-config'
+import proConfig from '../../../config/pro-config'
 
 const port = proConfig.nodeServerPort || process.env.PORT
 

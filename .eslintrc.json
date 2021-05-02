@@ -125,19 +125,28 @@
     "no-irregular-whitespace": "off",
     "no-multiple-empty-lines": "off",
     "no-new-wrappers": "error",
+    "no-lonely-if": "off",
     "no-shadow": [
       "off",
       {
         "hoist": "all"
       }
     ],
+    "no-return-await": "off",
     "no-throw-literal": "error",
     "no-trailing-spaces": "off",
     "no-undef-init": "error",
+    "class-methods-use-this": "off",
     "no-underscore-dangle": [
       "error",
       {
-        "allow": ["__INITIAL_DATA__", "__STORE__", "_insertCss"],
+        "allow": [
+          "__INITIAL_DATA__",
+          "__STORE__",
+          "_insertCss",
+          "__SERVER__",
+          "__IS_PROD__"
+        ],
         "allowAfterThis": true,
         "allowAfterThisConstructor": true
       }
@@ -169,6 +178,7 @@
         "enforceDynamicLinks": "always"
       }
     ],
+    "react/button-has-type": "off",
     "no-restricted-syntax": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",

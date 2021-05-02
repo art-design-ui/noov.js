@@ -1,20 +1,21 @@
-// 整个编译服务的启动入口
-// 包括以下功能----
-// 服务端代码的首次编译
-// 文件的监听
-// 前端代码的打包和 watch
-// node服务的启动
-
-// 服务度代码编译完成后 启动node 服务
-// 服务代码每次编译后，重启node 服务
-
 const { spawn } = require('child_process') // 用于创建子进程
 const constantCode = require('../config/constant')
 const chalk = require('chalk') // 为控制台输出的信息增加点色彩
 const log = console.log
-const proConfig = require('../src/common/pro-config')
-const getIp = require('../src/server/utils/get-ip')
+const proConfig = require('../config/pro-config')
+const os = require('os')
 
+function getIp() {
+  const interfaces = os.networkInterfaces()
+  for (const name of Object.keys(interfaces)) {
+    for (const interface of interfaces[name]) {
+      const { address, family, internal } = interface
+      if (family === 'IPv4' && !internal) {
+        return address
+      }
+    }
+  }
+}
 // node server port
 const nodeServerPort = proConfig.nodeServerPort
 
@@ -32,6 +33,7 @@ const feCodeWatchProcess = spawn('npm', ['run', 'client:dev', localHostIp], {
 const svrCodeWatchProcess = spawn('npm', ['run', 'server-dev:build'], {
   shell: process.platform === 'win32'
 })
+
 // node 服务进程
 let nodeServerProcess = null
 // 启动 node 服务

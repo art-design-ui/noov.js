@@ -11,5 +11,14 @@ declare global {
     }
     __STORE__: Store
     __INITIAL_DATA__: any
+    __SERVER__: string
+  }
+  namespace NodeJS {
+    interface Global {
+      document: Document
+      window: Window
+      navigator: Navigator
+      __IS_PROD__: string
+    }
   }
 }

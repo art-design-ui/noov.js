@@ -7,7 +7,7 @@ import getStore from '@/store/reducers'
 import App from './router'
 import routeList from './route-config'
 import matchRoute from '../../common/match-route'
-import proConfig from '../../common/pro-config'
+import proConfig from '../../../config/pro-config'
 import { Store } from 'redux'
 
 function renderDom(routeList: any[], initStoreState?: Store) {

@@ -1,9 +1,6 @@
 import React, { FC, useState } from 'react'
 import { Link } from 'react-router-dom'
-// @ts-ignore
 import css from './index.less'
-// @ts-ignore
-import withStyles from 'isomorphic-style-loader/withStyles'
 
 import isConnect from '@/library/isConnect'
 
@@ -17,24 +14,24 @@ export const About: FC<any> = (props: any) => {
     <div className="abut">
       <h1>hello react-ssr</h1>
       <button onClick={handleClick}>关于我页面</button>
-      {
-        [111, 2, 3, 4, 5, 6111, 17, 338, 1232221].map((item: number) => <div key={item}>
-          {item}
-        </div>)
-      }
-      <Link to={'/history'}>click</Link>
+      {[111, 2, 3, 4, 5, 6111, 17, 338, 1232221].map((item: number) => (
+        <div key={item}>{item}</div>
+      ))}
+      <Link to="/history">click</Link>
     </div>
   )
 }
 const mapStateToProps = (state: any) => ({
-  home: state.home,
-});
+  home: state.home
+})
 
-const mapDispatchToProps = (dispatch: any) => ({
-});
+const mapDispatchToProps = (dispatch: any) => ({})
 
-export default isConnect({
-  css,
-  mapStateToProps,
-  mapDispatchToProps
-}, About)
+export default isConnect(
+  {
+    css,
+    mapStateToProps,
+    mapDispatchToProps
+  },
+  About
+)

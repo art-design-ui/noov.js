@@ -1,6 +1,5 @@
-import * as React from 'react'
-import AsyncLoader from '@/components/asyncLoader';
-
+import React from 'react'
+import AsyncLoader from '@/components/asyncLoader'
 
 export default [
   {

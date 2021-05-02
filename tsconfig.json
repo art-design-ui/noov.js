@@ -20,7 +20,8 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "allowJs": true
   },
   "settings": {
     "import/resolver": {

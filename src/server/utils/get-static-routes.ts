@@ -1,6 +1,6 @@
 // 路由静态化处理
 
-import proConfig from '../../common/pro-config'
+import proConfig from '../../../config/pro-config'
 
 const checkIsAsyncRoute = component => {
   return component && component[proConfig.asyncComponentKey]

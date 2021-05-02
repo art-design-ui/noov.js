@@ -24,6 +24,11 @@ declare module '*.png' {
   export default content
 }
 
+declare module '*.json' {
+  const jsonValue: any
+  export default jsonValue
+}
+
 declare module 'isomorphic-style-loader/StyleContext'
 
 declare module 'isomorphic-style-loader/withStyles'

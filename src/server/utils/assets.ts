@@ -1,4 +1,4 @@
-import map from '@dist/server/asset-manifest.json'
+// import map from '@dist/server/asset-mainfest.json'
 // 生产环境中 静态资源的处理
 
 interface IAssets {
@@ -26,14 +26,14 @@ export default function getAssets(): any {
   } else {
     // 生产环境 从 asset-manifest.json 读取资源
     jsFiles.forEach(item => {
-      if (map[item]) {
-        assets.js.push(`<script type="text/javascript"  src="${map[item]}"></script>`)
-      }
+      // if (map[item]) {
+      //   assets.js.push(`<script type="text/javascript"  src="${map[item]}"></script>`)
+      // }
     })
     cssFiles.forEach(item => {
-      if (map[item]) {
-        assets.css.push(`<link rel="stylesheet" type="text/css" href="${map[item]}" />`)
-      }
+      // if (map[item]) {
+      //   assets.css.push(`<link rel="stylesheet" type="text/css" href="${map[item]}" />`)
+      // }
     })
   }
 

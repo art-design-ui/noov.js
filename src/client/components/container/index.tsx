@@ -63,7 +63,7 @@ export default (SourceComponent: any) =>
       const { staticContext } = this.props
       const { canClientFetch, initialData } = this.state
 
-      if (window.__SERVER__) {
+      if (__SERVER__) {
         // 服务端渲染
         props.initialData = staticContext.initialData || {}
       } else {

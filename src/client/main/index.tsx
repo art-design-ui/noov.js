@@ -16,6 +16,8 @@ function renderDom(routeList: any[], initStoreState?: Store) {
     return () => removeCss.forEach(dispose => dispose()) // 组件卸载时 移除当前的 style 标签
   }
   // !redux数据更新
+
+  console.log('initStoreState', initStoreState)
   const store = getStore(initStoreState)
   // 服务端只需要获取state就行 我们方法的定义在redux就定义好了
   console.log('同步更新的客户端store', store.getState())
@@ -56,6 +58,8 @@ function clientRender(routeList: any) {
   const { targetRoute } = matchResult
   if (targetRoute) {
     // 预加载 等待异步脚本加载完成
+    console.log('proConfig', proConfig)
+    console.log('targetRoute', targetRoute)
     if (targetRoute.component[proConfig.asyncComponentKey]) {
       targetRoute
         .component()

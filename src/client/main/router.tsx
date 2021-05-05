@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom'
 const App = ({ routeList }: any) => (
   <Layout>
     <Switch>
+      {console.log('routeList', routeList)}
       {routeList.map((item: any) => (
         <Route key={item.path} {...item} />
       ))}

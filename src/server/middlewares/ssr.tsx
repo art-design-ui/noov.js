@@ -1,25 +1,17 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { StaticRouter } from 'react-router'
+import { StaticRouter } from 'react-router-dom'
 import StyleContext from 'isomorphic-style-loader/StyleContext'
 import { Provider } from 'react-redux'
 import routeList from '../../client/main/route-config'
 import matchRoute from '../../common/match-route'
-
+import App from '../../client/main/router'
 import getStaticRoutes from '../utils/get-static-routes'
-
 import proConfig from '../../../config/pro-config'
-
 import getAssets from '../utils/assets'
-// css 同构的上下文
-
 import getStore from '../../client/store/reducers'
 
 const store = getStore()
-
-console.log('store', store)
-
-// 得到 store,默认没有数据
 
 export default async (ctx: any, next: any) => {
   const { path } = ctx.request
@@ -33,11 +25,12 @@ export default async (ctx: any, next: any) => {
 
   // 查找到的目标路由对象
   const matchResult = await matchRoute(path, staticRoutesList)
-  const { targetRoute, targetMatch } = matchResult
+  console.log('matchResult', matchResult)
+  const { targetRoute } = matchResult
 
   // 进行数据预取，更新 store 内的数据
   let fetchDataFn
-  let fetchResult = {}
+  let fetchResult: any = {}
   if (targetRoute) {
     fetchDataFn = targetRoute.component ? targetRoute.component.getInitialProps : null
     if (fetchDataFn) {
@@ -67,16 +60,16 @@ export default async (ctx: any, next: any) => {
     styles.forEach((style: any) => cssObj.add(style._getContent()))
   const html = renderToString(
     <Provider store={store}>
-      <StaticRouter location={path} context={context}>
+      <StaticRouter location={path} context={context as any}>
         <StyleContext.Provider value={{ insertCss }}>
           <App routeList={staticRoutesList} />
         </StyleContext.Provider>
       </StaticRouter>
     </Provider>
   )
-
+  console.log('html', html)
   const styles: string[] = []
-  ;[...cssObj].forEach(item => {
+  Array.from(cssObj).forEach((item: any) => {
     const [mid, content] = item[0]
     styles.push(`<style id="s${mid}-0">${content}</style>`)
   })
@@ -110,4 +103,5 @@ export default async (ctx: any, next: any) => {
       ${assetsMap.js.join('')}
       `
   await next()
+  return null
 }

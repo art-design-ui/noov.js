@@ -5,7 +5,7 @@ export interface IMatchRoute {
   targetMatch: any
 }
 export default (path: string, routeList: any[]): IMatchRoute => {
-  let targetRoute = ''
+  let targetRoute
   let targetMatch
 
   for (const item of routeList) {

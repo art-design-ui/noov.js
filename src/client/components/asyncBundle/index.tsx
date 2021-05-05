@@ -10,6 +10,7 @@ import LoadingCompoent from '../loading'
 
 interface IPops {
   children: any
+  load: any
 }
 export default class AsyncBundle extends React.PureComponent<IPops, any> {
   state = {
@@ -18,7 +19,7 @@ export default class AsyncBundle extends React.PureComponent<IPops, any> {
 
   componentDidMount() {
     const { mod } = this.state
-    if (mod) {
+    if (!mod) {
       this.load(this.props)
     }
   }
@@ -37,6 +38,7 @@ export default class AsyncBundle extends React.PureComponent<IPops, any> {
 
   render() {
     const { mod } = this.state
+    console.log('mod', mod)
     const { children } = this.props
     return mod ? children(mod) : <LoadingCompoent />
   }

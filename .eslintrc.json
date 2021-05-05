@@ -137,20 +137,23 @@
     "no-trailing-spaces": "off",
     "no-undef-init": "error",
     "class-methods-use-this": "off",
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": [
-          "__INITIAL_DATA__",
-          "__STORE__",
-          "_insertCss",
-          "__SERVER__",
-          "__IS_PROD__"
-        ],
-        "allowAfterThis": true,
-        "allowAfterThisConstructor": true
-      }
-    ],
+    // "no-underscore-dangle": [
+    //   "error",
+    //   {
+    //     "allow": [
+    //       "__INITIAL_DATA__",
+    //       "__STORE__",
+    //       "_insertCss",
+    //       "__SERVER__",
+    //       "__IS_PROD__",
+    //       "__IS_SSR__",
+    //       "_getContent"
+    //     ],
+    //     "allowAfterThis": true,
+    //     "allowAfterThisConstructor": true
+    //   }
+    // ],
+    "no-underscore-dangle": "off",
     "no-unsafe-finally": "error",
     "no-unused-expressions": [
       "error",
@@ -182,6 +185,7 @@
     "no-restricted-syntax": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
+    "import/no-mutable-exports": "off",
     "react/no-unused-state": "error",
     "react/self-closing-comp": "error",
     "react/boolean-prop-naming": ["error", { "rule": "^(is|has)[A-Z]([A-Za-z0-9]?)+" }],

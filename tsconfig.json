@@ -10,7 +10,8 @@
       "@library/*": ["src/client/library/*"],
       "@modules/*": ["src/client/modules/*"],
       "@style/*": ["src/client/style/*"],
-      "@components/*": ["src/client/components/*"]
+      "@components/*": ["src/client/components/*"],
+      "@dist/*": ["dist/*"]
     },
     "types": ["node", "webpack-env"],
     "target": "es5",

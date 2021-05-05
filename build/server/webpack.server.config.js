@@ -9,14 +9,14 @@ var utils = require('../client/utils')
 //构建前清理目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 process.env.BABEL_ENV = 'node' //设置 babel 的运行环境
-const proConfig = require('../../src/common/pro-config')
+const proConfig = require('../../config/pro-config')
 
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   mode: process.env.NODE_ENV,
   target: 'node',
-  entry: resolvePath('../../src/server/app/index.js'), //入口文件
+  entry: resolvePath('../../src/server/app/index.ts'), //入口文件
   output: {
     filename: 'app.js',
     path: resolvePath('../../dist/server')
@@ -37,11 +37,6 @@ module.exports = {
           'postcss-loader',
           'less-loader'
         ]
-      },
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
       },
       {
         test: /\.ts|\.tsx/,

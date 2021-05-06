@@ -24,6 +24,7 @@
     "project": "./tsconfig.json"
   },
   "plugins": ["react", "@typescript-eslint", "prettier", "import", "react-hooks"],
+  // 共享
   "settings": {
     "react": {
       "pragma": "React",

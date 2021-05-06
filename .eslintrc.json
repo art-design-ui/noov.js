@@ -7,9 +7,9 @@
     "airbnb",
     "plugin:import/errors",
     "plugin:import/warnings",
+    "plugin:react/recommended",
     // ts项目可能跟eslint规则冲突，这个插件就是解决这个问题的
     // 注意优先级
-    "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier", // 可能会覆盖eslint-config-airbnb的rule配置 不需要prettier/airbnb 理清楚这种关系 ===>基础配置
     "plugin:prettier/recommended"
@@ -82,6 +82,7 @@
     ],
     "@typescript-eslint/type-annotation-spacing": "off",
     "@typescript-eslint/unified-signatures": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "arrow-body-style": "error",
     "arrow-parens": ["off", "as-needed"],
     "camelcase": "off",
@@ -136,23 +137,9 @@
     "no-throw-literal": "error",
     "no-trailing-spaces": "off",
     "no-undef-init": "error",
+    " no-plusplus":"off",
+    " no-await-in-loop":"off",
     "class-methods-use-this": "off",
-    // "no-underscore-dangle": [
-    //   "error",
-    //   {
-    //     "allow": [
-    //       "__INITIAL_DATA__",
-    //       "__STORE__",
-    //       "_insertCss",
-    //       "__SERVER__",
-    //       "__IS_PROD__",
-    //       "__IS_SSR__",
-    //       "_getContent"
-    //     ],
-    //     "allowAfterThis": true,
-    //     "allowAfterThisConstructor": true
-    //   }
-    // ],
     "no-underscore-dangle": "off",
     "no-unsafe-finally": "error",
     "no-unused-expressions": [
@@ -223,13 +210,14 @@
     "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
     "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }]
-  }
-  // "overrides": [
-  //   {
-  //     "files": ["global.d.ts", "css.modules.d.ts", "pro-config.ts"],
-  //     "rules": {
-  //       "@typescript-eslint/naming-convention": "off"
-  //     }
-  //   }
-  // ]
+  },
+  "overrides": [
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.js", "*.ts"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": ["error"]
+      }
+    }
+  ]
 }

@@ -14,10 +14,11 @@
       "@dist/*": ["dist/*"]
     },
     "types": ["node", "webpack-env"],
-    "target": "es5",
+    "target": "es6",
     "module": "esnext",
     "jsx": "react",
     "moduleResolution": "node",
+    "noImplicitAny": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,

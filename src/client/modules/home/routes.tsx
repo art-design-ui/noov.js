@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import AsyncLoader from '@/components/asyncLoader'
 
 // 这种不能被做到热更新 那么应该reload啊

@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import css from './index.less'
 import isConnect from '@/library/isConnect'
 
-export const Home = (props: any) => {
+export const Home = () => {
   const handleClick = () => {
-    window.alert('handleClick')
+    alert('handleClick')
   }
 
   return (

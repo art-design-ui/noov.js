@@ -12,7 +12,11 @@ interface IPops {
   children: any
   load: any
 }
-export default class AsyncBundle extends React.PureComponent<IPops, any> {
+
+interface IState {
+  mod?: any
+}
+export default class AsyncBundle extends React.PureComponent<IPops, IState> {
   state = {
     mod: null
   }
@@ -38,7 +42,6 @@ export default class AsyncBundle extends React.PureComponent<IPops, any> {
 
   render() {
     const { mod } = this.state
-    console.log('mod', mod)
     const { children } = this.props
     return mod ? children(mod) : <LoadingCompoent />
   }

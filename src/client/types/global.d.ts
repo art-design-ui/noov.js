@@ -1,24 +1,23 @@
 /// <reference path="apis.d.ts" />
+import { Store } from "redux";
 
-import { Store } from 'redux'
-
+export {}
 declare global {
   interface Window {
     apis: IAPIs
     router: any
-    sensors: {
-      tracks(eventName: string, eventOptions: { [key: string]: any }): void
-    }
     __STORE__: Store
     __INITIAL_DATA__: any
-    __SERVER__: string
+    CI_DEV_BRANCH:string
+    ENV:string
+    ENV_DOMAIN:string
+    CI_APP_NAME:string
+    CI_PROJECT_NAMESPACE:string
   }
   namespace NodeJS {
     interface Global {
-      document: Document
-      window: Window
-      navigator: Navigator
-      __IS_PROD__: string
+      __IS_PROD__: string,
+      __dynamics_route_to_static:any[]
     }
   }
 }

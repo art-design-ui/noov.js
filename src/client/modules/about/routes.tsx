@@ -1,4 +1,3 @@
-import React from 'react'
 import AsyncLoader from '@/components/asyncLoader'
 
 export default [

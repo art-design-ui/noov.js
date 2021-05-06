@@ -8,7 +8,7 @@ var utils = require('../client/utils')
 
 //构建前清理目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-process.env.BABEL_ENV = 'node' //设置 babel 的运行环境
+process.env.BABEL_ENV = 'node' // 设置 babel 的运行环境
 const proConfig = require('../../config/pro-config')
 
 const isProd = process.env.NODE_ENV === 'production'

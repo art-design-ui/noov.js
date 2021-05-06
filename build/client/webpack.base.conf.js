@@ -1,11 +1,9 @@
-const os = require('os')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const webpack = require('webpack')
-
-// const ProgressBarPlugin = require('progress-bar-webpack-plugin')
-// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const utils = require('./utils')
 const config = require('../../config')
@@ -45,15 +43,6 @@ module.exports = {
         ]
       },
       {
-        test: /\.ts|\.tsx|\.js|\.json/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-        options: {
-          fix: true,
-          cache: true
-        }
-      },
-      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
@@ -81,8 +70,10 @@ module.exports = {
   },
 
   plugins: [
-    // new ProgressBarPlugin(),
-    // new ForkTsCheckerWebpackPlugin(),
+    new ForkTsCheckerWebpackPlugin(),
+    new ESLintPlugin({
+      fix:true
+    }),
     new WebpackBar({
       name: 'client',
       color: 'green'

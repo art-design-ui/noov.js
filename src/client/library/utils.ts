@@ -143,7 +143,7 @@ export const to = (promise: any) => {
     }).catch(err => [err, null])
   }
   return promise
-    .then((...args: any[]) => [null, ...args])
+    .then((...args: any[]) => [null,...args])
     .catch((err: any) => [err, null])
 }
 

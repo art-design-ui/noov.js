@@ -1,12 +1,9 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import css from './index.less'
-
 import isConnect from '@/library/isConnect'
 
-console.log('css', css)
-export const About: FC<any> = (props: any) => {
-  const [nums, setNums] = useState<number[]>([1, 2, 3, 4, 5, 6])
+export const About: FC<any> = () => {
   const handleClick = () => {
     window.alert('handleClick')
   }
@@ -25,7 +22,7 @@ const mapStateToProps = (state: any) => ({
   home: state.home
 })
 
-const mapDispatchToProps = (dispatch: any) => ({})
+const mapDispatchToProps = () => ({})
 
 export default isConnect(
   {

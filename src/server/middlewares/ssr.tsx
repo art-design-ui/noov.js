@@ -24,7 +24,7 @@ export default async (ctx: any, next: any) => {
   const staticRoutesList = await getStaticRoutes(routeList)
 
   // 查找到的目标路由对象
-  const matchResult = await matchRoute(path, staticRoutesList)
+  const matchResult = await matchRoute(path, staticRoutesList as any[])
   console.log('matchResult', matchResult)
   const { targetRoute } = matchResult
 

@@ -62,7 +62,7 @@ export default (SourceComponent: any) =>
       }
       const { staticContext } = this.props
       const { canClientFetch, initialData } = this.state
-
+      // wwebpack会做替换
       if (__SERVER__) {
         // 服务端渲染
         props.initialData = staticContext.initialData || {}

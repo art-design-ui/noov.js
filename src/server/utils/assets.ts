@@ -16,7 +16,7 @@ export default function getAssets(): any {
     js: [],
     css: []
   }
-  if (!global.__IS_PROD__) {
+  if (!__IS_PROD__) {
     // 开发环境
     assets.js.push(`<script type="text/javascript"  src="${devHost}/libs.js"></script>`)
     assets.js.push(`<script type="text/javascript"  src="${devHost}/main.js"></script>`) // 写死的
@@ -25,16 +25,16 @@ export default function getAssets(): any {
     // assets.css.push(`<link rel="stylesheet" type="text/css" href="${devHost}/styles.css" />`);
   } else {
     // 生产环境 从 asset-manifest.json 读取资源
-    jsFiles.forEach(item => {
-      // if (map[item]) {
-      //   assets.js.push(`<script type="text/javascript"  src="${map[item]}"></script>`)
-      // }
-    })
-    cssFiles.forEach(item => {
-      // if (map[item]) {
-      //   assets.css.push(`<link rel="stylesheet" type="text/css" href="${map[item]}" />`)
-      // }
-    })
+    // jsFiles.forEach(item => {
+    //   // if (map[item]) {
+    //   //   assets.js.push(`<script type="text/javascript"  src="${map[item]}"></script>`)
+    //   // }
+    // })
+    // cssFiles.forEach(item => {
+    //   // if (map[item]) {
+    //   //   assets.css.push(`<link rel="stylesheet" type="text/css" href="${map[item]}" />`)
+    //   // }
+    // })
   }
 
   return assets

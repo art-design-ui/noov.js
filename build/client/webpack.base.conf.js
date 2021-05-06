@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const webpack = require('webpack')
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const utils = require('./utils')
@@ -72,7 +72,7 @@ module.exports = {
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
     new ESLintPlugin({
-      fix:true
+      fix: true
     }),
     new WebpackBar({
       name: 'client',
@@ -85,7 +85,7 @@ module.exports = {
       inject: true
     }),
     new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: '"development"' },
+      'process.env': JSON.stringify({ NODE_ENV: 'development' }),
       __IS_PROD__: false,
       __SERVER__: false
     })

@@ -12,11 +12,11 @@ export const Home = () => {
     <div className="home">
       <h1>hello react-ssr</h1>
       <button onClick={handleClick}>click me1的顶顶顶顶顶的</button>
-      {[111, 22, 44, 55].map((item: number) => (
+      {[111, 22, 44, 55, 300, 58, 100].map((item: number) => (
         <div key={item}>{item}</div>
       ))}
       <p>11</p>
-      <Link to="/history">2222clqick to2 404 page12为</Link>
+      <Link to="/history">404 page</Link>
     </div>
   )
 }
@@ -24,10 +24,8 @@ export const Home = () => {
 // 这一块可能会设计到把redux的操作
 Home.getInitialProps = ({ store }: any) => {
   console.log(store)
-  // TODO
-  // 在这个生命周期调用getInitialData
+  // TODO 在这个生命周期调用getInitialData
   store.dispatch.home.getInitialData()
-  // store.dispatch.home.SET_PLAYERS([100, 200, 300,999])
 }
 
 const mapStateToProps = (state: any) => ({

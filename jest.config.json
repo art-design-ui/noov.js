@@ -1,0 +1,21 @@
+{
+  "verbose": true,
+  "collectCoverage": true,
+  "cacheDirectory": ".cache",
+  "roots": ["<rootDir>"],
+  "setupFilesAfterEnv": ["./tests/setupTests.js"],
+  "transform": {
+    "^.+\\.(t|j)s?x?$": "babel-jest"
+  },
+  "globals": {},
+  "testPathIgnorePatterns": [
+    "<rootDir>/node_modules/",
+    "<rootDir>/lib/",
+    "<rootDir>/dist/",
+    "<rootDir>/es/"
+  ],
+  "moduleNameMapper": {},
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
+  "testEnvironment": "jsdom",
+  "testRegex": "(test|spec)\\.(ts|tsx|js)?$"
+}

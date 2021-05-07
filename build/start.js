@@ -19,16 +19,18 @@ const localHostIp = getIp()
 
 log(chalk.green('servers starting....'))
 
-// 服务端代码监控和构建进程
-const svrCodeWatchProcess = spawn('npm', ['run', 'server-dev:build'], {
-  shell: process.platform === 'win32'
-})
-
 // 前端代码构建 服务进程
 const feCodeWatchProcess = spawn('npm', ['run', 'client:dev', localHostIp], {
   stdio: 'inherit',
   shell: process.platform === 'win32'
 })
+
+// 服务端代码监控和构建进程
+let svrCodeWatchProcess = spawn('npm', ['run', 'server-dev:build'], {
+  shell: process.platform === 'win32'
+})
+// 监听服务端代码构建服务的对外输出  stdout 事件
+svrCodeWatchProcess.stdout.on('data', print)
 
 // node 服务进程
 let nodeServerProcess = null
@@ -53,9 +55,6 @@ function print(data) {
     console.log(str)
   }
 }
-
-// 监听服务端代码构建服务的对外输出  stdout 事件
-svrCodeWatchProcess.stdout.on('data', print)
 
 // 杀掉子进程
 const killChild = () => {

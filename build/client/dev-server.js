@@ -3,13 +3,13 @@ const express = require('express')
 const webpack = require('webpack')
 const devMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
-const proConfig = require('../../config/pro-config')
 const webpackConfig = require('./webpack.dev.conf')
+const proConfig = require('../../config/pro-config')
 const config = require('../../config')
 const port = config.dev.port
-
+const constant = require('../../config/constant')
 const getPort = require('get-port')
-
+const chalk = require('chalk')
 const main = function () {
   getPort({
     port: getPort.makeRange(port, port + 100)
@@ -53,7 +53,12 @@ const main = function () {
 
     console.log('> Starting dev server...')
     webpackDevMiddleware.waitUntilValid(() => {
-      console.log(`> Listening at ${config.dev.host}:${proConfig.nodeServerPort} \n`)
+      console.log(`> client Listening at ${config.dev.host}:${newPort} \n`)
+      console.log(
+        chalk.green(
+          `> server Listening at ${config.dev.host}:${proConfig.nodeServerPort} \n`
+        )
+      )
     })
     app.listen(newPort)
   })

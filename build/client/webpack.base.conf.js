@@ -71,7 +71,7 @@ module.exports = {
   },
 
   plugins: [
-    new FriendlyErrorsWebpackPlugin(),
+    // new FriendlyErrorsWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new ESLintPlugin({
       fix: true

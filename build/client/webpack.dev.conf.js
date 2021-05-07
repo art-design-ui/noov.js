@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const {merge} = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
@@ -16,7 +16,7 @@ module.exports = merge(baseWebpackConfig, {
     main: ['webpack-hot-middleware/client?path=__hmr', './src/client/main/index.tsx']
   },
   module: {
-    rules:[
+    rules: [
       {
         test: /\.(le|c)ss$/,
         use: [
@@ -30,13 +30,13 @@ module.exports = merge(baseWebpackConfig, {
           'postcss-loader',
           'less-loader'
         ]
-      },
+      }
     ]
   },
   devtool: 'cheap-source-map',
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(), 
+    new webpack.HotModuleReplacementPlugin(),
     new BundleAnalyzerPlugin.BundleAnalyzerPlugin({
       openAnalyzer: false,
       analyzerPort: 'auto'

@@ -2,26 +2,20 @@ const webpack = require('webpack')
 const {merge} = require('webpack-merge')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-// var HtmlWebpackVariablePlugin = require('../deploy/hwp-variable')
 
-const utils = require('./utils')
 const baseWebpackConfig = require('./webpack.base.conf')
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
-
   resolve: {
     alias: {
       'react-dom': '@hot-loader/react-dom'
     }
   },
-
   entry: {
     main: ['webpack-hot-middleware/client?path=__hmr', './src/client/main/index.tsx']
   },
-
   module: {
-    // rules: [...utils.styleLoaders({})]
     rules:[
       {
         test: /\.(le|c)ss$/,
@@ -39,13 +33,10 @@ module.exports = merge(baseWebpackConfig, {
       },
     ]
   },
-
-  // devtool: '#cheap-module-eval-source-map',
-
+  devtool: 'cheap-source-map',
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
-    new webpack.HotModuleReplacementPlugin(), // 热更新这块标记下
-    // new HtmlWebpackVariablePlugin(process.env.VARS ? { map: process.env.VARS } : {}),
+    new webpack.HotModuleReplacementPlugin(), 
     new BundleAnalyzerPlugin.BundleAnalyzerPlugin({
       openAnalyzer: false,
       analyzerPort: 'auto'

@@ -46,7 +46,6 @@ export default async (ctx: any, next: any): Promise<null> => {
     proConfig
   })
   ctx.body = result
-  console.log(result)
   await next()
   return null
 }

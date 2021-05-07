@@ -2,7 +2,6 @@ const { spawn } = require('child_process') // 用于创建子进程
 const constantCode = require('../config/constant')
 const chalk = require('chalk') // 为控制台输出的信息增加点色彩
 const log = console.log
-const proConfig = require('../config/pro-config')
 const os = require('os')
 
 function getIp() {
@@ -16,12 +15,15 @@ function getIp() {
     }
   }
 }
-// node server port
-const nodeServerPort = proConfig.nodeServerPort
-
 const localHostIp = getIp()
 
 log(chalk.red('servers starting....'))
+
+
+// 服务端代码监控和构建进程
+const svrCodeWatchProcess = spawn('npm', ['run', 'server-dev:build'], {
+  shell: process.platform === 'win32'
+})
 
 // 前端代码构建 服务进程
 const feCodeWatchProcess = spawn('npm', ['run', 'client:dev', localHostIp], {
@@ -29,10 +31,6 @@ const feCodeWatchProcess = spawn('npm', ['run', 'client:dev', localHostIp], {
   shell: process.platform === 'win32'
 })
 
-// 服务端代码监控和构建进程
-const svrCodeWatchProcess = spawn('npm', ['run', 'server-dev:build'], {
-  shell: process.platform === 'win32'
-})
 
 // node 服务进程
 let nodeServerProcess = null

@@ -1,15 +1,11 @@
-// webpack/webpack.dev.config.js
-//webpack 配置文件
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 const resolvePath = pathstr => path.resolve(__dirname, pathstr)
 var utils = require('../client/utils')
-
-//构建前清理目录
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 process.env.BABEL_ENV = 'node' // 设置 babel 的运行环境
 const proConfig = require('../../config/pro-config')
+const WebpackBar = require('webpackbar')
 
 const isProd = process.env.NODE_ENV === 'production'
 
@@ -64,7 +60,11 @@ module.exports = {
       'process.env': JSON.stringify({ NODE_ENV: `${process.env.NODE_ENV}` }),
       __IS_PROD__: isProd,
       __SERVER__: true
-    })
+    }),
+    new WebpackBar({
+      name: 'server',
+      color: 'orange'
+    }),
   ],
   resolve: {
     extensions: ['.js', '.ts', '.tsx', '.json'],

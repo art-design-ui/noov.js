@@ -12,7 +12,7 @@ export const Home = () => {
     <div className="home">
       <h1>hello react-ssr</h1>
       <button onClick={handleClick}>click me1的顶顶顶顶顶的</button>
-      {[111, 22, 44, 55, 300, 58, 100].map((item: number) => (
+      {[22, 44, 55, 300, 100, 20].map((item: number) => (
         <div key={item}>{item}</div>
       ))}
       <p>11</p>

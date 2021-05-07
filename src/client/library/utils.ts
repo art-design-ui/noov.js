@@ -134,7 +134,7 @@ export function parseQuery(key: string): any {
   return queryMap[key]
 }
 
-export const to = (promise: any) => {
+export const to = (promise: any): Promise<any> => {
   if (!promise) {
     return new Promise((resolve, reject) => {
       reject(new Error('requires promises as the param'))

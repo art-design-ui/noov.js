@@ -237,6 +237,18 @@
         "ecmaVersion": 12,
         "sourceType": "module"
       }
+    },
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.js", "*.ts"],
+      "rules": {
+        "@typescript-eslint/explicit-module-boundary-types": [
+          "error",
+          {
+            "allowArgumentsExplicitlyTypedAsAny":true
+          }
+        ]
+      }
     }
   ]
 }

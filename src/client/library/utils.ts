@@ -1,7 +1,5 @@
-import env from '@/config/env'
-
 export function getCookie(name: string): string | null {
-  const cookieName = encodeURIComponent(name) + '='
+  const cookieName = `${encodeURIComponent(name)}=`
   const cookieStart = document.cookie.indexOf(cookieName)
   let cookieValue = null
 
@@ -25,18 +23,18 @@ export function setCookie(
   domain?: string,
   secure?: boolean
 ): void {
-  let cookieText = encodeURIComponent(name) + '=' + encodeURIComponent(value)
+  let cookieText = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`
 
   if (expires instanceof Date) {
-    cookieText += '; expires=' + expires.toUTCString()
+    cookieText += `; expires=${expires.toUTCString()}`
   }
 
   if (path) {
-    cookieText += '; path=' + path
+    cookieText += `; path=${path}`
   }
 
   if (domain) {
-    cookieText += '; domain=' + domain
+    cookieText += `; domain=${domain}`
   }
 
   if (secure) {
@@ -61,7 +59,7 @@ export function unsetCookie(
   })
   paths.forEach(p => {
     setCookie(name, '', new Date(0), p, domain, secure)
-    setCookie(name, '', new Date(0), p, `.` + domain, secure)
+    setCookie(name, '', new Date(0), p, `.${domain}`, secure)
   })
 }
 
@@ -69,7 +67,7 @@ export function base64Decode(str: string): string {
   str = window
     .atob(str)
     .split('')
-    .map((c: string) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+    .map((c: string) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
     .join('')
   return decodeURIComponent(str)
 }
@@ -81,7 +79,7 @@ export function compose(f: (...args: any[]) => any, g: (...args: any[]) => any) 
 }
 
 export function getTokenKey(): string {
-  const key = 'FC_SESSION'
+  const key = 'SESSION'
   return key
 }
 
@@ -143,18 +141,9 @@ export const to = (promise: any) => {
     }).catch(err => [err, null])
   }
   return promise
-    .then((...args: any[]) => [null,...args])
+    .then((...args: any[]) => [null, ...args])
     .catch((err: any) => [err, null])
 }
 
 export const isValidArray = (list: any): boolean =>
   Boolean(list) && Array.isArray(list) && Boolean(list.length)
-
-// 获取前端路由
-export const getFrontHost = () => {
-  if (env.ENV === 'prod') {
-    return `${window.ENV_DOMAIN.split(',')[1]}/#`
-  } else {
-    return `${window.ENV_DOMAIN}/${window.CI_PROJECT_NAMESPACE}/${window.CI_APP_NAME}/#`
-  }
-}

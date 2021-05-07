@@ -41,7 +41,7 @@ for (const key of Object.keys(serverMap)) {
 
 createInstance.useReq((config: any) => {
   let token = getToken()
-  const dToken = parseQuery('FC_SESSION')
+  const dToken = parseQuery('SESSION')
   if (dToken) {
     token = dToken
     setCookie(getTokenKey(), dToken)

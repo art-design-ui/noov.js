@@ -128,6 +128,7 @@
     "no-multiple-empty-lines": "off",
     "no-new-wrappers": "error",
     "no-lonely-if": "off",
+    "no-param-reassign":"off",
     "no-shadow": [
       "off",
       {
@@ -163,6 +164,7 @@
     "spaced-comment": ["error", "always", { "markers": ["/"] }],
     "use-isnan": "error",
     "valid-typeof": "off",
+    "prefer-destructuring":"off",
     "react/jsx-no-target-blank": [
       "error",
       {
@@ -234,16 +236,6 @@
         },
         "ecmaVersion": 12,
         "sourceType": "module"
-      },
-      "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": ["error"]
-      }
-    },
-    {
-      // enable the rule specifically for TypeScript files
-      "files": ["*.js", "*.ts"],
-      "rules": {
-        "@typescript-eslint/explicit-module-boundary-types": ["error"]
       }
     }
   ]

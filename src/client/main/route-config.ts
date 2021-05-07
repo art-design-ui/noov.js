@@ -9,5 +9,5 @@ try {
   console.warn(err.message)
 }
 
-console.log('>>> routes: ', JSON.stringify(routes))
+// console.log('>>> routes: ', JSON.stringify(routes))
 export default routes

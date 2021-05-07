@@ -10,7 +10,7 @@
     "build": "node ./build/client/prod-build.js",
     "client:build": "node ./build/client/prod-build.js",
     "server:build": "cross-env  NODE_ENV=production webpack --config  ./build/server/webpack.server.config.js",
-    "server-dev:build": "node ./build/server/dev-build.js",
+    "server-dev:build": "cross-env  NODE_ENV=development node ./build/server/dev-build.js",
     "start": "node ./dist/server/app.js",
     "mock": "oock -c ./mock/config.js ",
     "gc": "git-cz",

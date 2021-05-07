@@ -18,17 +18,14 @@ const options = {
   }
 }
 // 设置资源缓存-开发环境我们暂时不做缓存，为了热更新
-console.log('process.env.NODE_ENV', process.env.NODE_ENV)
 if (process.env.NODE_ENV === 'development') {
   app.use(async (ctx, next) => {
     await next()
     ctx.set('Cache-Control', 'no-store')
   })
+  app.use(proxy(options))
 }
 
-app.use(proxy(options))
-
-// 设置可访问的静态资源
 app.use(koaStatic('./dist/static'))
 
 // ssr 中间件

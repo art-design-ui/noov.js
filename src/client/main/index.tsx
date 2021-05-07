@@ -16,11 +16,8 @@ function renderDom(routeList: any[], initStoreState?: Store) {
     return () => removeCss.forEach(dispose => dispose()) // 组件卸载时 移除当前的 style 标签
   }
   // !redux数据更新
-
-  console.log('initStoreState', initStoreState)
   const store = getStore(initStoreState)
   // 服务端只需要获取state就行 我们方法的定义在redux就定义好了
-  console.log('同步更新的客户端store', store.getState())
   window.__STORE__ = store
   const renderMethod = module.hot ? ReactDOM.render : ReactDOM.hydrate
   renderMethod(
@@ -58,15 +55,12 @@ function clientRender(routeList: any) {
   const { targetRoute } = matchResult
   if (targetRoute) {
     // 预加载 等待异步脚本加载完成
-    console.log('proConfig', proConfig)
-    console.log('targetRoute', targetRoute)
     if (targetRoute.component[proConfig.asyncComponentKey]) {
       targetRoute
         .component()
         .props.load()
         .then(() => {
           // 异步组件加载完成后再渲染页面
-          console.log('异步组件加载完成.')
           // 设置已加载完的组件，否则需要重新请求
           renderDom(routeList, initStoreState)
         })

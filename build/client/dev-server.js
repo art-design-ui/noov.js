@@ -3,9 +3,8 @@ const express = require('express')
 const webpack = require('webpack')
 const devMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
-
+const proConfig = require('../../config/pro-config')
 const webpackConfig = require('./webpack.dev.conf')
-
 const config = require('../../config')
 const port = config.dev.port
 
@@ -20,9 +19,9 @@ const main = function () {
     const compiler = webpack(webpackConfig)
 
     const webpackDevMiddleware = devMiddleware(compiler, {
-      // logLevel: 'silent',
       index: 'index.html',
-      publicPath: webpackConfig.output.publicPath
+      publicPath: webpackConfig.output.publicPath,
+      stats: false
     })
 
     const webpackHotMiddleware = hotMiddleware(compiler, {
@@ -34,10 +33,7 @@ const main = function () {
     //设置跨域访问
     app.all('*', function (req, res, next) {
       res.header('Access-Control-Allow-Origin', '*')
-      // res.header("Access-Control-Allow-Headers", "X-Requested-With");
-      // res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-      // res.header("X-Powered-By",' 3.2.1')
-      // res.header("Content-Type", "application/json;charset=utf-8");
+      res.header('Cache-Control', 'no-store')
       next()
     })
 
@@ -57,7 +53,7 @@ const main = function () {
 
     console.log('> Starting dev server...')
     webpackDevMiddleware.waitUntilValid(() => {
-      console.log(`> Listening at ${config.dev.host}:${newPort} \n`)
+      console.log(`> Listening at ${config.dev.host}:${proConfig.nodeServerPort} \n`)
     })
     app.listen(newPort)
   })

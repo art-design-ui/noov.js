@@ -17,8 +17,7 @@ function getIp() {
 }
 const localHostIp = getIp()
 
-log(chalk.red('servers starting....'))
-
+log(chalk.green('servers starting....'))
 
 // 服务端代码监控和构建进程
 const svrCodeWatchProcess = spawn('npm', ['run', 'server-dev:build'], {
@@ -30,7 +29,6 @@ const feCodeWatchProcess = spawn('npm', ['run', 'client:dev', localHostIp], {
   stdio: 'inherit',
   shell: process.platform === 'win32'
 })
-
 
 // node 服务进程
 let nodeServerProcess = null

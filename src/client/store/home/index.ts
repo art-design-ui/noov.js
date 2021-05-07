@@ -32,7 +32,6 @@ export default createModel<any>()({
             }
             resolve(data)
             // 更新状态
-            console.log('players', home)
             home.SET_PLAYERS([800, 800, 800])
           }, 500)
         })

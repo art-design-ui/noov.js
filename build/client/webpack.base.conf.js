@@ -4,6 +4,7 @@ const WebpackBar = require('webpackbar')
 const webpack = require('webpack')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 
 const utils = require('./utils')
 const config = require('../../config')
@@ -70,6 +71,7 @@ module.exports = {
   },
 
   plugins: [
+    new FriendlyErrorsWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin(),
     new ESLintPlugin({
       fix: true

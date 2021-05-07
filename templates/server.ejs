@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta name="force-rendering" content="webkit"/>
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>${tdk.title}</title>
-    <meta name="keywords" content="<%=tdk.keywords%>" />
-    <meta name="description" content="<%=tdk.description%>" />
-    <%- styles.join('') %>
-  </head>
-  <body>
-    <div id="app">
-      <%- html %>
-    </div>
-    <% if (fetchResult) { %>
-      <textarea id="ssrTextInitData" style="display:none;">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>${tdk.title}</title>
+  <meta name="keywords" content="<%=tdk.keywords%>" />
+  <meta name="description" content="<%=tdk.description%>" />
+  <%- styles.join('') %>
+</head>
+
+<body>
+  <div id="app">
+    <%- html %>
+  </div>
+  <% if (fetchResult) { %>
+    <textarea id="ssrTextInitData" style="display:none;">
         <%=JSON.stringify(fetchResult || {})%>
       </textarea>
     <% } %>
-    <% if (store.getState()) { %>
-      <textarea id="ssrTextInitStoreData" style="display:none;">
+      <% if (store.getState()) { %>
+        <textarea id="ssrTextInitStoreData" style="display:none;">
         <%=JSON.stringify(store.getState() || {})%>
       </textarea>
-    <% } %>
-  </body>
+        <% } %>
+</body>
+
 </html>
 <script>
-  window.__IS__SSR__= "<%= proConfig.__IS_SSR__%>"
+  window.__IS__SSR__="<%= proConfig.__IS_SSR__%>"
 </script>
 <%- assetsMap.js.join('')%>

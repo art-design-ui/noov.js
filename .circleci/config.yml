@@ -22,12 +22,15 @@ jobs:
   build:
     <<: *defaults
     steps:
+      - add_ssh_keys:
+      fingerprints:
+        - "a1:c4:67:ea:2c:dd:d8:f8:b0:f8:ab:84:fe:fa:de:b0"
       - attach_workspace:
           at: ~/repo
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
+            - v1-dependencies-          
       - run: ls -al
       - run: npm run docs:build
       - run: ls -al

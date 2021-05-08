@@ -32,8 +32,8 @@ jobs:
             - v1-dependencies-
       - run: ls -al
       - run:
-        name: Avoid hosts unknown for github
-        command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+          name: Avoid hosts unknown for github
+          command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: npm run docs:build
       - run: ls -al
       - run: # git push

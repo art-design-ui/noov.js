@@ -10,3 +10,4 @@ package-lock.json
 tslint-to-eslint-config.log
 .umi
 .umi-production
+docs/.DS_Store

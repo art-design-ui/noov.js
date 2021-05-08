@@ -31,6 +31,14 @@ jobs:
       - run: ls -al
       - run: npm run docs:build
       - run: ls -al
+      - run: # git push
+          name: push-github
+          command: |
+            git config --global user.email "1518190293@qq.com"
+            git config --global user.name "vnues"
+            git add -f dist
+            git commit -m 'create dist'
+            git push origin `git subtree split --prefix dist master`:gh-pages --force
       - save_cache:
           paths:
             - node_modules

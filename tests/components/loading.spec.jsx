@@ -10,5 +10,6 @@ describe('test Loading component', () => {
     expect(element.tagName).toEqual('DIV')
     expect(element.className).toEqual('loading')
     expect(element.innerHTML).toEqual('loading......')
+    expect(element).toMatchSnapshot()
   })
 })

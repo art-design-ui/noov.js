@@ -30,5 +30,6 @@ describe('test AsyncBundle component', () => {
     expect(element).toBeInTheDocument()
     expect(element.tagName).toEqual('P')
     expect(element.className).toEqual('load-component')
+    expect(element).toMatchSnapshot()
   })
 })

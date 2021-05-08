@@ -224,11 +224,11 @@
       },
       "extends": [
         "airbnb",
-        "plugin:react/recommended",
+        "plugin:jest/recommended",
         "prettier",
         "plugin:prettier/recommended"
       ],
-      "plugins": ["react", "prettier"],
+      "plugins": ["react", "prettier", "jest"],
       "parser": "babel-eslint",
       "parserOptions": {
         "ecmaFeatures": {

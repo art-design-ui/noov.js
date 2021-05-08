@@ -42,8 +42,8 @@ jobs:
             git config --global user.email "1518190293@qq.com"
             git config --global user.name "vnues"
             git add -f docs
-            git commit -m 'feat: create dist'
-            git push origin `git subtree split --prefix docs master`:gh-pages --force
+            git commit -m 'feat: create docs'
+            git push origin `git subtree split --prefix docs/dist master`:gh-pages --force
       - save_cache:
           paths:
             - node_modules

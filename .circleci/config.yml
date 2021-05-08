@@ -38,7 +38,7 @@ jobs:
             git config --global user.name "vnues"
             git add -f docs
             git commit -m 'feat: create dist'
-            git push origin `git subtree split --prefix dist master`:gh-pages --force
+            git push origin `git subtree split --prefix docs master`:gh-pages --force
       - save_cache:
           paths:
             - node_modules

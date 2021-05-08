@@ -8,3 +8,5 @@ package-lock.json
 .DS_Store
 */.DS_Store
 tslint-to-eslint-config.log
+.umi
+.umi-production

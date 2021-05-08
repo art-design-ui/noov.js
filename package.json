@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "typings": "dist/lib/index.d.ts",
+  "ignore": [
+    "examples",
+    "docs"
+  ],
   "scripts": {
     "dev": "node ./build/start.js",
     "client:dev": "node ./build/client/dev-server.js",
@@ -20,7 +25,9 @@
     "release": "standard-version",
     "test": "jest --config jest.config.json",
     "test:update": "jest --config jest.config.json --updateSnapshot",
-    "coverage": "node ./build/coverage-server"
+    "coverage": "node ./build/coverage-server",
+    "docs:start": "dumi dev",
+    "docs:build": "dumi build"
   },
   "author": "vnues",
   "license": "ISC",
@@ -81,6 +88,8 @@
     "cross-env": "^7.0.3",
     "css-loader": "^3.4.0",
     "cz-customizable": "^6.3.0",
+    "dumi": "^1.1.16",
+    "dumi-theme-default": "^1.0.16",
     "eslint": "^7.25.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-airbnb-typescript": "^12.3.1",

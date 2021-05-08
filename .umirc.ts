@@ -4,7 +4,7 @@ export default defineConfig({
   title: 'noov',
   outputPath: 'docs/dist',
   mode: 'site',
-  publicPath: '/',
+  publicPath: 'https://art-design-ui.github.io/noov.js/',
   base: '/',
   locales: [
     ['zh', '中文'],

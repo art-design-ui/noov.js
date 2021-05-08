@@ -32,9 +32,9 @@ export default class AsyncBundle extends React.PureComponent<IPops, IState> {
     this.setState({
       mod: null
     })
-    // 注意这里，使用Promise对象; mod.default导出默认
     props.load().then((mod: any) => {
       this.setState({
+        // import()加载模块成功以后 值的获取是通过default属性
         mod: mod.default ? mod.default : mod
       })
     })

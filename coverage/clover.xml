@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1620314341598" clover="3.2.0">
-  <project timestamp="1620314341598" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1620493462151" clover="3.2.0">
+  <project timestamp="1620493462152" name="All files">
+    <metrics statements="11" coveredstatements="11" conditionals="6" coveredconditionals="4" methods="5" coveredmethods="5" elements="22" coveredelements="20" complexity="0" loc="11" ncloc="11" packages="2" files="2" classes="2"/>
+    <package name="asyncBundle">
+      <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="4" methods="4" coveredmethods="4"/>
+      <file name="index.tsx" path="/Users/vnues/我的开源项目/react-ssr/src/client/components/asyncBundle/index.tsx">
+        <metrics statements="10" coveredstatements="10" conditionals="6" coveredconditionals="4" methods="4" coveredmethods="4"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="26" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="46" count="4" type="cond" truecount="2" falsecount="0"/>
+      </file>
+    </package>
+    <package name="loading">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.tsx" path="/Users/vnues/我的开源项目/react-ssr/src/client/components/loading/index.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="4" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

@@ -17,5 +17,5 @@
   "moduleNameMapper": {},
   "moduleFileExtensions": ["ts", "tsx", "js", "jsx"],
   "testEnvironment": "jsdom",
-  "testRegex": "(test|spec)\\.(ts|tsx|js)?$"
+  "testRegex": "(test|spec)\\.(ts|tsx|jsx|js)?$"
 }

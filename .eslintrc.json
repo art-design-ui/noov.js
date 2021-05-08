@@ -217,18 +217,21 @@
   "overrides": [
     {
       // 针对于js文件使用下面这套配置
-      "files": ["*.js"],
+      "files": ["*.js", "*.jsx"],
       "env": {
         "browser": true,
         "es2021": true
       },
       "extends": [
         "airbnb",
+        "plugin:import/errors",
+        "plugin:import/warnings",
         "plugin:jest/recommended",
+        "plugin:react/recommended",
         "prettier",
         "plugin:prettier/recommended"
       ],
-      "plugins": ["react", "prettier", "jest"],
+      "plugins": ["react", "prettier", "jest", "import"],
       "parser": "babel-eslint",
       "parserOptions": {
         "ecmaFeatures": {
@@ -236,6 +239,10 @@
         },
         "ecmaVersion": 12,
         "sourceType": "module"
+      },
+      "rules": {
+        "import/no-unresolved": "off",
+        "import/extensions": "off"
       }
     }
     // {

@@ -1,7 +1,7 @@
 import proConfig from '../../config/pro-config'
 import asyncLoader from '../../src/client/components/asyncLoader'
 
-describe('test AsyncBundle component', () => {
+describe('test AsyncBundle Hoc Function', () => {
   it('should return the correct result when call asyncLoader', () => {
     const loader = new Promise(resolve => {
       resolve(null)

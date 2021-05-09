@@ -1,5 +1,5 @@
 import { History } from 'history'
-import React, { Context } from 'react'
+import React from 'react'
 
 let self: any = null
 

@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
-import css from './index.less'
+import style from './index.less'
 import isConnect from '@/library/isConnect'
 
 export const About: FC<any> = () => {
@@ -26,7 +26,7 @@ const mapDispatchToProps = () => ({})
 
 export default isConnect(
   {
-    css,
+    css: {},
     mapStateToProps,
     mapDispatchToProps
   },

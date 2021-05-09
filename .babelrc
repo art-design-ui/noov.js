@@ -2,7 +2,8 @@
   "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
   "plugins": [
     "@babel/plugin-transform-runtime",
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties",
+    "./build/babel/plugin/no-require-css"
   ],
   "env": {
     "esm": {
@@ -21,8 +22,7 @@
             "useESModules": true
           }
         ],
-        "react-hot-loader/babel",
-        "./build/babel/plugin/no-require-css"
+        "react-hot-loader/babel"
       ]
     },
     "node": {

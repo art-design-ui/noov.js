@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import css from './index.less'
+import style from './index.less'
 import isConnect from '@/library/isConnect'
 
 export const Home = () => {
@@ -39,7 +39,7 @@ const mapDispatchToProps = () => ({
 
 export default isConnect(
   {
-    css,
+    css: style,
     mapStateToProps,
     mapDispatchToProps
   },

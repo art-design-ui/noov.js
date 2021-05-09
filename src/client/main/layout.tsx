@@ -1,7 +1,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 
-import css from './layout.less'
+import style from './layout.less'
 
 import withStyles from 'isomorphic-style-loader/withStyles'
 
@@ -20,4 +20,4 @@ class Index extends React.PureComponent<Istate, IProps> {
   }
 }
 
-export default withStyles(css)(hot(Index))
+export default withStyles({})(hot(Index))

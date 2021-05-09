@@ -242,7 +242,10 @@
       },
       "rules": {
         "import/no-unresolved": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "react/prop-types": "off",
+        "no-underscore-dangle": "off",
+        "func-names": "off"
       }
     }
     // {

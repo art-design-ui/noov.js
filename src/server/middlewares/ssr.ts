@@ -21,7 +21,7 @@ export default async (ctx: any, next: any): Promise<null> => {
   const { html, fetchResult } = await genHtml(path, insertCss, store)
   const { page } = fetchResult || {}
   let tdk = {
-    title: '默认标题 - my react ssr',
+    title: '默认标题 - noov.js',
     keywords: '默认关键词',
     description: '默认描述'
   }

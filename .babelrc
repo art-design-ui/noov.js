@@ -2,8 +2,7 @@
   "presets": ["@babel/env", "@babel/typescript", "@babel/react"],
   "plugins": [
     "@babel/plugin-transform-runtime",
-    "@babel/plugin-proposal-class-properties",
-    "./build/babel/plugin/no-require-css"
+    "@babel/plugin-proposal-class-properties"
   ],
   "env": {
     "esm": {
@@ -34,6 +33,19 @@
           }
         ]
       ]
+    },
+    "test": {
+      "presets": [
+        [
+          "@babel/env",
+          {
+            "targets": {
+              "esmodules": true
+            }
+          }
+        ]
+      ],
+      "plugins": ["./build/babel/plugin/babel-plugin-style-to-empty"]
     }
   }
 }

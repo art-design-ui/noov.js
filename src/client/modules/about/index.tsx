@@ -26,7 +26,7 @@ const mapDispatchToProps = () => ({})
 
 export default isConnect(
   {
-    css: {},
+    css: style,
     mapStateToProps,
     mapDispatchToProps
   },

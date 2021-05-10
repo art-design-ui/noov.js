@@ -245,7 +245,8 @@
         "import/extensions": "off",
         "react/prop-types": "off",
         "no-underscore-dangle": "off",
-        "func-names": "off"
+        "func-names": "off",
+        "no-empty-function": "off"
       }
     }
     // {

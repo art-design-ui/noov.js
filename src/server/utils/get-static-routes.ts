@@ -1,5 +1,6 @@
 // 路由静态化处理
 
+import { IRoute } from '@/main/route-config'
 import proConfig from '../../../config/pro-config'
 
 const checkIsAsyncRoute = (component:any) => {
@@ -7,7 +8,7 @@ const checkIsAsyncRoute = (component:any) => {
 }
 
 // 将路由转换为静态路由
-async function getStaticRoutes(routes:any) {
+async function getStaticRoutes(routes:IRoute[]) {
   const key = '__dynamics_route_to_static'
   if (global[key]) {
     return global[key]

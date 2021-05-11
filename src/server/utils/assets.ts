@@ -5,12 +5,12 @@ interface IAssets {
   js: string[]
   css: string[]
 }
-export default function getAssets(): any {
+export default function getAssets(): IAssets {
   // let devHost = '//localhost:9001';
   const devHost = `//localhost:${8080}`
 
-  const jsFiles = ['libs.js', 'main.js', 'styles.js']
-  const cssFiles = ['styles.css']
+  // const jsFiles = ['libs.js', 'main.js', 'styles.js']
+  // const cssFiles = ['styles.css']
 
   const assets: IAssets = {
     js: [],

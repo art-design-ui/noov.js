@@ -5,10 +5,11 @@ import ejs from 'ejs'
 import fs from 'fs'
 import path from 'path'
 import genHtml from './genHtml'
+import Koa from 'koa'
 
 const ejsPath = path.join(__dirname, '../../templates/server.ejs')
 const store = getStore()
-export default async (ctx: any, next: any): Promise<null> => {
+export default async (ctx:Koa.Context, next: Koa.Next): Promise<null> => {
   const { path } = ctx.request
 
   if (path.indexOf('.') > -1) {
@@ -16,7 +17,7 @@ export default async (ctx: any, next: any): Promise<null> => {
     return next()
   }
   const cssObj = new Set() // CSS for all rendered React components
-  const insertCss = (...styles: any) =>
+  const insertCss = (...styles: any[]) =>
     styles.forEach((style: any) => cssObj.add(style._getContent()))
   const { html, fetchResult } = await genHtml(path, insertCss, store)
   const { page } = fetchResult || {}

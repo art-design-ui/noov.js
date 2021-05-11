@@ -5,12 +5,12 @@ import StyleContext from 'isomorphic-style-loader/StyleContext'
 import { Provider } from 'react-redux'
 import getStore from '@/store/reducers'
 import App from './router'
-import routeList from './route-config'
+import routeList, { IRoute } from './route-config'
 import matchRoute from '../../common/match-route'
 import proConfig from '../../../config/pro-config'
 import { Store } from 'redux'
 
-function renderDom(routeList: any[], initStoreState?: Store) {
+function renderDom(routeList: IRoute[], initStoreState?: Store) {
   const insertCss = (...styles: any[]) => {
     const removeCss = styles.map(style => style._insertCss()) // 客户端执行，插入style
     return () => removeCss.forEach(dispose => dispose()) // 组件卸载时 移除当前的 style 标签
@@ -32,9 +32,9 @@ function renderDom(routeList: any[], initStoreState?: Store) {
   )
 }
 
-function clientRender(routeList: any) {
+function clientRender(routeList: IRoute[]) {
   let initialData: any = null
-  let initStoreState: any = null
+  let initStoreState:Store|undefined
   const textDom = document.getElementById('ssrTextInitData') as HTMLTextAreaElement | null
   const storeDom = document.getElementById(
     'ssrTextInitStoreData'

@@ -11,37 +11,38 @@ import { Store } from 'redux'
 
 interface IGenResult {
   html: string
-  fetchResult: any
+  fetchResult:any
 }
 export default async function genHtml(
   path: string,
-  insertCss: any,
+  insertCss: Function,
   store: Store
 ): Promise<IGenResult> {
   // 获得静态路由
   const staticRoutesList = await getStaticRoutes(routeList)
 
   // 查找到的目标路由对象
-  const matchResult = await matchRoute(path, staticRoutesList as any[])
+  const matchResult = await matchRoute(path, staticRoutesList)
   const { targetRoute } = matchResult
 
   // 进行数据预取，更新 store 内的数据
   let fetchDataFn
-  let fetchResult: any = {}
+  let fetchResult= {}
   if (targetRoute) {
     fetchDataFn = targetRoute.component ? targetRoute.component.getInitialProps : null
     if (fetchDataFn) {
-      fetchResult = await fetchDataFn({ store }) // 更新 state
+      // 更新 state
+      fetchResult = await fetchDataFn({ store })
     }
   }
 
-  // 将预取数据在这里传递过去 组内通过props.staticContext获取
-  const context = {
+  // 将预取数据在这里传递过去 组内通过props.staticContext获取 IntrinsicAttributes 
+  const context: any= {
     initialData: fetchResult
   }
   const html = renderToString(
     <Provider store={store}>
-      <StaticRouter location={path} context={context as any}>
+      <StaticRouter location={path} context={context}>
         <StyleContext.Provider value={{ insertCss }}>
           <App routeList={staticRoutesList} />
         </StyleContext.Provider>

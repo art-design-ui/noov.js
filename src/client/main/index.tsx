@@ -34,7 +34,7 @@ function renderDom(routeList: IRoute[], initStoreState?: Store) {
 
 function clientRender(routeList: IRoute[]) {
   let initialData: any = null
-  let initStoreState:Store|undefined
+  let initStoreState: Store | undefined
   const textDom = document.getElementById('ssrTextInitData') as HTMLTextAreaElement | null
   const storeDom = document.getElementById(
     'ssrTextInitStoreData'

@@ -129,6 +129,7 @@
     "no-new-wrappers": "error",
     "no-lonely-if": "off",
     "no-param-reassign": "off",
+    "no-alert": "off",
     "no-shadow": [
       "off",
       {
@@ -246,7 +247,8 @@
         "react/prop-types": "off",
         "no-underscore-dangle": "off",
         "func-names": "off",
-        "no-empty-function": "off"
+        "no-empty-function": "off",
+        "no-console": "off"
       }
     }
     // {

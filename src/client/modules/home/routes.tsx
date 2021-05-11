@@ -1,6 +1,5 @@
 import AsyncLoader from '@/components/asyncLoader'
 
-
 export default [
   {
     path: '/',

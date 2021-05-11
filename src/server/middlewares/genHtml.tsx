@@ -11,7 +11,7 @@ import { Store } from 'redux'
 
 interface IGenResult {
   html: string
-  fetchResult:any
+  fetchResult: any
 }
 export default async function genHtml(
   path: string,
@@ -27,7 +27,7 @@ export default async function genHtml(
 
   // 进行数据预取，更新 store 内的数据
   let fetchDataFn
-  let fetchResult= {}
+  let fetchResult = {}
   if (targetRoute) {
     fetchDataFn = targetRoute.component ? targetRoute.component.getInitialProps : null
     if (fetchDataFn) {
@@ -36,8 +36,8 @@ export default async function genHtml(
     }
   }
 
-  // 将预取数据在这里传递过去 组内通过props.staticContext获取 IntrinsicAttributes 
-  const context: any= {
+  // 将预取数据在这里传递过去 组内通过props.staticContext获取 IntrinsicAttributes
+  const context: any = {
     initialData: fetchResult
   }
   const html = renderToString(

@@ -9,7 +9,7 @@ import Koa from 'koa'
 
 const ejsPath = path.join(__dirname, '../../templates/server.ejs')
 const store = getStore()
-export default async (ctx:Koa.Context, next: Koa.Next): Promise<null> => {
+export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
   const { path } = ctx.request
 
   if (path.indexOf('.') > -1) {

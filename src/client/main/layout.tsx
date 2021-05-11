@@ -11,7 +11,7 @@ class Index extends React.PureComponent<Istate, IProps> {
     const { children } = this.props
     return (
       <div className="layout-box">
-        <h1>koa+react+ssr</h1>
+        <h1>ssr-layout</h1>
         {children}
       </div>
     )

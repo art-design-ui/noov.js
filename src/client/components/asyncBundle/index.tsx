@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+import { ILoader } from '../asyncLoader'
 import LoadingCompoent from '../loading'
 
 /**
@@ -9,8 +10,8 @@ import LoadingCompoent from '../loading'
  */
 
 interface IPops {
-  children: any
-  load: any
+  children: (mod: any) => ReactNode
+  load: ILoader
 }
 
 interface IState {

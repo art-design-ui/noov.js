@@ -1,8 +1,9 @@
 import React from 'react'
-export interface IRoute{
-  path:string
+
+export interface IRoute {
+  path: string
   component: Function
-  exact:boolean
+  exact: boolean
 }
 
 let routes: IRoute[] = []

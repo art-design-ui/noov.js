@@ -1,5 +1,5 @@
 import proConfig from '../../../config/pro-config'
-import getAssets from '../utils/assets'
+import getAssets, { IAssets } from '../utils/assets'
 import getStore from '../../client/store/reducers'
 import ejs from 'ejs'
 import fs from 'fs'
@@ -22,7 +22,7 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
   const { html, fetchResult } = await genHtml(path, insertCss, store)
   const { page } = fetchResult || {}
   let tdk = {
-    title: '默认标题 - noov.js',
+    title: 'noov.js',
     keywords: '默认关键词',
     description: '默认描述'
   }
@@ -35,7 +35,15 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     styles.push(`<style id="s${mid}-0">${content}</style>`)
   })
   // 静态资源
-  const assetsMap = getAssets()
+  let assetsMap
+  const assets = getAssets()
+  if ((assets as Promise<IAssets>).then) {
+    ;(assets as Promise<IAssets>).then((res: IAssets) => {
+      assetsMap = res
+    })
+  } else {
+    assetsMap = assets
+  }
   const template = fs.readFileSync(ejsPath, { encoding: 'utf-8' })
   const result = ejs.render(template, {
     tdk,
@@ -44,7 +52,9 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     styles,
     html,
     assetsMap,
-    proConfig
+    proConfig,
+    showInitData: Object.keys(fetchResult || {}).length > 0,
+    showState: Object.keys(store.getState() || {}).length > 0
   })
   ctx.body = result
   await next()

@@ -130,6 +130,8 @@
     "no-lonely-if": "off",
     "no-param-reassign": "off",
     "no-alert": "off",
+    "no-plusplus": "off",
+    "no-await-in-loop": "off",
     "no-shadow": [
       "off",
       {

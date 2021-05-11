@@ -23,13 +23,13 @@ function pageNotFound({ staticContext }: any) {
   )
 }
 try {
-  if (require.context) {
-    const context = require.context(`../modules`, true, /.*\/routes\.tsx?$/)
-    context.keys().forEach((key: string) => {
-      const route = context(key).default
-      routes = routes.concat(route)
-    })
-  }
+  // if (require.context) {
+  const context = require.context(`../modules`, true, /.*\/routes\.tsx?$/)
+  context.keys().forEach((key: string) => {
+    const route = context(key).default
+    routes = routes.concat(route)
+  })
+  // }
 } catch (err) {
   console.warn(err.message)
 }

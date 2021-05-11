@@ -3,12 +3,11 @@
 import { IRoute } from '@/main/route-config'
 import proConfig from '../../../config/pro-config'
 
-const checkIsAsyncRoute = (component:any) => {
-  return component && component[proConfig.asyncComponentKey]
-}
+const checkIsAsyncRoute = (component: any): boolean =>
+  component && component[proConfig.asyncComponentKey]
 
 // 将路由转换为静态路由
-async function getStaticRoutes(routes:IRoute[]) {
+async function getStaticRoutes(routes: IRoute[]) {
   const key = '__dynamics_route_to_static'
   if (global[key]) {
     return global[key]
@@ -33,7 +32,7 @@ async function getStaticRoutes(routes:IRoute[]) {
       })
     }
   }
-  global[key]  = staticRoutes
+  global[key] = staticRoutes
   return staticRoutes // 返回静态路由
 }
 

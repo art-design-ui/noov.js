@@ -9,12 +9,7 @@ interface IProps {}
 class Index extends React.PureComponent<Istate, IProps> {
   render() {
     const { children } = this.props
-    return (
-      <div className="layout-box">
-        <h1>ssr-layout</h1>
-        {children}
-      </div>
-    )
+    return <div className="layout-box">{children}</div>
   }
 }
 

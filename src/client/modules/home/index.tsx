@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import style from './index.less'
 import isConnect from '@/library/isConnect'
+import Logo from './logo.jpg'
 
 export const Home = () => {
   const handleClick = () => {
@@ -9,14 +10,38 @@ export const Home = () => {
   }
 
   return (
-    <div className="home">
-      <h1>hello react-ssr</h1>
-      <button onClick={handleClick}>click me1的顶顶顶顶顶的</button>
-      {[22, 44, 55, 300, 100, 201].map((item: number) => (
-        <div key={item}>{item}</div>
-      ))}
-      <p>11</p>
-      <Link to="/history">404 page</Link>
+    <div className="container">
+      <div>
+        <img src={Logo} alt="" />
+        <h1 className="title">noov for ssr</h1>
+        <div className="links">
+          <a
+            href="https://art-design-ui.github.io/noov.js/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button--green"
+          >
+            Documentation
+          </a>
+          <a
+            href="https://github.com/art-design-ui/noov.js"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button--grey"
+          >
+            5 GitHub
+          </a>
+        </div>
+        <div
+          role="button"
+          tabIndex={0}
+          className="button--green click-btn"
+          onClick={handleClick}
+          onKeyDown={handleClick}
+        >
+          点一点
+        </div>
+      </div>
     </div>
   )
 }

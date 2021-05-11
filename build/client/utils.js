@@ -5,22 +5,22 @@ const theme = path.join(__dirname, '../../src/client/style/antd.override.theme.l
 
 const config = require('../../config')
 
-exports.resolve = function(dir) {
+exports.resolve = function (dir) {
   return path.join(__dirname, '../../', dir)
 }
 
-exports.assetsPath = function(_path) {
+exports.assetsPath = function (_path) {
   const assetsSubDirectory = config.base.assetsSubDirectory
   return path.posix.join(assetsSubDirectory, _path)
 }
 
-exports.styleLoaders = function(options) {
+exports.styleLoaders = function (options) {
   const baseLoaders = [
     {
-      loader:'isomorphic-style-loader'
+      loader: 'isomorphic-style-loader'
     },
     {
-      loader: 'css-loader',
+      loader: 'css-loader'
     },
     { loader: 'postcss-loader' }
   ]
@@ -41,7 +41,7 @@ exports.styleLoaders = function(options) {
     include: /node_modules\/antd/,
     use: [
       {
-        loader:'isomorphic-style-loader'
+        loader: 'isomorphic-style-loader'
       },
       {
         loader: 'css-loader'
@@ -63,7 +63,14 @@ exports.styleLoaders = function(options) {
     test: /\.css$/,
     include: /node_modules/,
     use: [
-      options.extract ? MiniCssExtractPlugin.loader : 'style-loader',
+      options.extract
+        ? {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: config.prod.assetsPublicPath
+            }
+          }
+        : 'style-loader',
       { loader: 'css-loader' }
     ]
   })

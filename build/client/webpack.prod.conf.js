@@ -1,6 +1,6 @@
 const os = require('os')
 const path = require('path')
-const merge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
@@ -10,6 +10,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const utils = require('./utils')
 const config = require('../../config')
 const baseWebpackConfig = require('./webpack.base.conf')
+//生成 manifest 方便定位对应的资源文件
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
@@ -27,10 +29,12 @@ module.exports = merge(baseWebpackConfig, {
 
   plugins: [
     new MiniCssExtractPlugin({
-      path: config.base.assetsRoot,
-      publicPath: config.prod.assetsPublicPath,
       filename: utils.assetsPath('css/[name].[hash]p.css'),
       chunkFilename: utils.assetsPath('css/[id].[chunkhash]p.css')
+    }),
+    //生成 manifest 方便定位对应的资源文件
+    new WebpackManifestPlugin({
+      fileName: '../server/asset-manifest.json'
     })
   ],
 
@@ -44,12 +48,7 @@ module.exports = merge(baseWebpackConfig, {
         }
       }),
       new TerserPlugin({
-        sourceMap: true,
-        terserOptions: {
-          compress: {
-            drop_console: true
-          }
-        }
+        parallel: true
       }),
       new CompressionWebpackPlugin({
         compressionOptions: {

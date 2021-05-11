@@ -8,7 +8,9 @@
   <meta name="force-rendering" content="webkit" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>${tdk.title}</title>
+  <title>
+    <%= tdk.title %>
+  </title>
   <meta name="keywords" content="<%=tdk.keywords%>" />
   <meta name="description" content="<%=tdk.description%>" />
   <%- styles.join('') %>
@@ -18,12 +20,12 @@
   <div id="app">
     <%- html %>
   </div>
-  <% if (fetchResult) { %>
+  <% if (showInitData) { %>
     <textarea id="ssrTextInitData" style="display:none;">
         <%=JSON.stringify(fetchResult || {})%>
       </textarea>
     <% } %>
-      <% if (store.getState()) { %>
+      <% if (showState) { %>
         <textarea id="ssrTextInitStoreData" style="display:none;">
         <%=JSON.stringify(store.getState() || {})%>
       </textarea>

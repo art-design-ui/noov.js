@@ -8,8 +8,7 @@ export interface IRoute {
 
 let routes: IRoute[] = []
 
-// 这种不能被做到热更新 那么应该reload啊
-// todo 这里有bug
+// TODO 不支持热更新
 function pageNotFound({ staticContext }: any) {
   if (staticContext) {
     staticContext.code = 404
@@ -17,19 +16,18 @@ function pageNotFound({ staticContext }: any) {
 
   return (
     <div>
-      <p>404页面page22</p>
-      <p>12</p>
+      <p>404页面</p>
     </div>
   )
 }
 try {
-  // if (require.context) {
-  const context = require.context(`../modules`, true, /.*\/routes\.tsx?$/)
-  context.keys().forEach((key: string) => {
-    const route = context(key).default
-    routes = routes.concat(route)
-  })
-  // }
+  if (__IS_WEBPACK__) {
+    const context = require.context(`../modules`, true, /.*\/routes\.tsx?$/)
+    context.keys().forEach((key: string) => {
+      const route = context(key).default
+      routes = routes.concat(route)
+    })
+  }
 } catch (err) {
   console.warn(err.message)
 }

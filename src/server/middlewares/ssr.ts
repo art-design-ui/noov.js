@@ -26,6 +26,7 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     keywords: '默认关键词',
     description: '默认描述'
   }
+  // 添加TDK
   if (page && page.tdk) {
     tdk = page.tdk
   }

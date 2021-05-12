@@ -25,6 +25,7 @@ describe('test AsyncBundle component', () => {
     const { rerender } = render(
       <AsyncBundle load={() => loader}>{Comp => <Comp />}</AsyncBundle>
     )
+    // TODO 这段测试写的不标准 rerender不是这么用的 不是跟enzyme的update方法一样的理解
     await rerender(<AsyncBundle load={() => loader}>{Comp => <Comp />}</AsyncBundle>)
     const element = screen.getByText('component')
     expect(element).toBeInTheDocument()

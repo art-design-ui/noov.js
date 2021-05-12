@@ -8,9 +8,7 @@ describe('test genHtml Function', () => {
       console.log('insertCss')
     }
     const { html } = await genHtml('/404', insertCss, store)
-    expect(html).toMatch(
-      `<div class="layout-box"><h1>koa+react+ssr</h1><div><p>404页面page22</p><p>12</p></div></div>`
-    )
+    expect(html).toMatch(`<div class="layout-box"><div><p>404页面</p></div></div>`)
     expect(html).toMatchSnapshot() // 保存快照
   })
 })

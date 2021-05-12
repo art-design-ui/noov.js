@@ -189,6 +189,7 @@
         "ignoreStateless": true
       }
     ],
+    "react/sort-comp": "off",
     "react/no-this-in-sfc": "error",
     "react/no-unsafe": [
       "error",

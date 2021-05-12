@@ -29,7 +29,7 @@ export default async function genHtml(
   let fetchDataFn
   let fetchResult = {}
   if (targetRoute) {
-    fetchDataFn = targetRoute.component ? targetRoute.component.getInitialProps : null
+    fetchDataFn = targetRoute.component ? targetRoute.component.asyncData : null
     if (fetchDataFn) {
       // 更新 state
       fetchResult = await fetchDataFn({ store })

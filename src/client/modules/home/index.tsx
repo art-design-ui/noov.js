@@ -47,7 +47,7 @@ export const Home = () => {
 }
 // ! 约定 服务端会调用这个方法  ===> 相当于是生命周期
 // 这一块可能会设计到把redux的操作
-Home.getInitialProps = ({ store }: any) => {
+Home.asyncData = ({ store }: any) => {
   // TODO 在这个生命周期调用getInitialData
   store.dispatch.home.getInitialData()
 }

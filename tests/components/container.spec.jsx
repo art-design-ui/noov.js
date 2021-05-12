@@ -26,7 +26,7 @@ describe('test AsyncBundle component', () => {
     const nameElement = screen.getByText('vnues')
     expect(nameElement.tagName).toBe('P')
   })
-  it('should return the correct default when client render call getInitialProps', async () => {
+  it('should return the correct default when client render call asyncData', async () => {
     // 前端模拟webpack替换_SERVER__
     window.__SERVER__ = null
     function SourceComponent(props) {
@@ -41,7 +41,7 @@ describe('test AsyncBundle component', () => {
       )
     }
     const user = { name: 'Tom', age: 24 }
-    SourceComponent.getInitialProps = async function () {
+    SourceComponent.asyncData = async function () {
       function getUser() {
         return new Promise(resolve => {
           setTimeout(() => {
@@ -67,7 +67,7 @@ describe('test AsyncBundle component', () => {
       action: 'PUSH'
     }
     render(<ContainerComponent history={history} />)
-    const { data } = await ContainerComponent.getInitialProps()
+    const { data } = await ContainerComponent.asyncData()
     expect(data).toEqual(user)
     expect(await screen.findByText('Tom')).toBeInTheDocument()
     expect(await screen.findByText('24')).toBeInTheDocument()
@@ -75,7 +75,7 @@ describe('test AsyncBundle component', () => {
     expect(document.title).toBe('首页')
   })
 
-  it('should return the correct default when server render call getInitialProps', async () => {
+  it('should return the correct default when server render call asyncData', async () => {
     // 前端模拟webpack替换_SERVER__
     window.__SERVER__ = {}
     function SourceComponent(props) {

@@ -5,8 +5,8 @@ let self: any = null
 
 const popStateCallback = () => {
   // 使用popStateFn保存函数防止addEventListener重复注册
-  if (self && self.getInitialProps) {
-    self.getInitialProps()
+  if (self && self.asyncData) {
+    self.asyncData()
   }
 }
 
@@ -29,20 +29,18 @@ interface IState {
 export default (SourceComponent: any) =>
   class HoComponent extends React.PureComponent<IProps, IState> {
     state = {
-      initialData: {},
-      canClientFetch: false, // 浏览器端是否需要请求数据
       page: {
         title: '',
         keywords: '',
         description: ''
-      }
+      },
+      initialData: {},
+      canClientFetch: false // 浏览器端是否需要请求数据
     }
 
     // 转接子组件的预取方法，服务端会调用这个方法来做数据预取
-    static async getInitialProps(ctx: any) {
-      return SourceComponent.getInitialProps
-        ? await SourceComponent.getInitialProps(ctx)
-        : {}
+    static async asyncData(ctx: any) {
+      return SourceComponent.asyncData ? await SourceComponent.asyncData(ctx) : {}
     }
 
     async componentDidMount() {
@@ -53,18 +51,18 @@ export default (SourceComponent: any) =>
       const canClientFetch = history && history.action === 'PUSH' // 路由跳转的时候可以异步请求数据
       if (canClientFetch) {
         // 如果是 history PUSH 操作 则更新数据
-        await this.getInitialProps()
+        await this.asyncData()
       }
     }
 
-    // 约定所有页面组件内的数据预取方法为getInitialProps,用于双端调用
-    async getInitialProps() {
-      // ssr首次进入页面以及csr/ssr切换路由时才调用组件的getInitialProps方法
+    // 约定所有页面组件内的数据预取方法为asyncData,用于双端调用
+    async asyncData() {
+      // ssr首次进入页面以及csr/ssr切换路由时才调用组件的asyncData方法
       const store = window.__STORE__ // 从全局得到 store
       // 兼容不使用 redux 的页面
       // 通过props.getInitialData判断
-      const res = SourceComponent.getInitialProps
-        ? await SourceComponent.getInitialProps({ store })
+      const res = SourceComponent.asyncData
+        ? await SourceComponent.asyncData({ store })
         : {}
       // 处理页面 title 显示
       const { tdk } = res.page || {}

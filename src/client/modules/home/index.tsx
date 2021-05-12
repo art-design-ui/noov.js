@@ -1,10 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
 import style from './index.less'
 import isConnect from '@/library/isConnect'
 import Logo from './logo.jpg'
 
-export const Home = () => {
+export interface IUser {
+  name: string
+  id: string
+}
+export const Home = (props: any) => {
+  const { initialData } = props
+  const [user, setUser] = useState<IUser>(initialData)
   const handleClick = () => {
     alert('handleClick')
   }
@@ -34,33 +39,39 @@ export const Home = () => {
         </div>
         <div
           role="button"
-          tabIndex={0}
           className="button--green click-btn"
+          tabIndex={0}
           onClick={handleClick}
           onKeyDown={handleClick}
         >
           点一点
         </div>
+        <span className="button--green click-btn">作者：{user.name}</span>
+        <span className="button--green click-btn">ID：{user.id}</span>
       </div>
     </div>
   )
 }
-// ! 约定 服务端会调用这个方法  ===> 相当于是生命周期
-// 这一块可能会设计到把redux的操作
 Home.asyncData = ({ store }: any) => {
-  // TODO 在这个生命周期调用getInitialData
-  store.dispatch.home.getInitialData()
+  // 模拟异步请求
+  const data = {
+    name: 'vnues',
+    id: '@1213'
+  }
+  // TODO 这里改动 服务端没有做更新
+  store.dispatch.home.setUser(data)
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(data)
+    }, 2000)
+  })
 }
 
 const mapStateToProps = (state: any) => ({
   home: state.home
 })
 
-const mapDispatchToProps = () => ({
-  getInitialData: (dispatch: any) => {
-    dispatch.home.getInitialData()
-  }
-})
+const mapDispatchToProps = () => ({})
 
 export default isConnect(
   {

@@ -10,7 +10,6 @@ const app = new Koa()
 // 引入代理模块
 const options = {
   targets: {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     '/__hmr': {
       target: 'http://localhost:8080',
       changeOrigin: true

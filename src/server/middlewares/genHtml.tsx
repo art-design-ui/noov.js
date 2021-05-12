@@ -33,6 +33,7 @@ export default async function genHtml(
     if (fetchDataFn) {
       // 更新 state
       fetchResult = await fetchDataFn({ store })
+      console.log(fetchResult)
     }
   }
 

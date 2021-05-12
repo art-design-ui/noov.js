@@ -9,14 +9,14 @@
     "docs"
   ],
   "scripts": {
-    "dev": "node ./build/start.js",
+    "start": "node ./build/start.js",
+    "dev": "npm run client:dev & node ./dist/server/app",
     "client:dev": "node ./build/client/dev-server.js",
     "server:dev": "node ./build/server/dev-server.js",
     "build": "node ./build/client/prod-build.js",
     "client:build": "node ./build/client/prod-build.js",
     "server:build": "cross-env  NODE_ENV=production webpack --config  ./build/server/webpack.server.config.js",
     "server-dev:build": "cross-env  NODE_ENV=development node ./build/server/dev-build.js",
-    "start": "node ./dist/server/app.js",
     "mock": "oock -c ./mock/config.js ",
     "gc": "git-cz",
     "stylelint:fix": "stylelint './src/**/*.less' --syntax less --fix",

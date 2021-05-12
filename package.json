@@ -9,13 +9,14 @@
     "docs"
   ],
   "scripts": {
-    "start": "node ./build/start.js",
+    "start": "cross-env NODE_ENV=production node ./dist/server/app.js",
+    "dev1":"node ./build/start.js",
     "dev": "npm run client:dev & node ./dist/server/app",
     "client:dev": "node ./build/client/dev-server.js",
     "server:dev": "node ./build/server/dev-server.js",
-    "build": "node ./build/client/prod-build.js",
+    "build": "npm run client:build && npm run server:build",
     "client:build": "node ./build/client/prod-build.js",
-    "server:build": "cross-env  NODE_ENV=production webpack --config  ./build/server/webpack.server.config.js",
+    "server:build": "cross-env NODE_ENV=production webpack --config  ./build/server/webpack.server.config.js",
     "server-dev:build": "cross-env  NODE_ENV=development node ./build/server/dev-build.js",
     "mock": "oock -c ./mock/config.js ",
     "gc": "git-cz",

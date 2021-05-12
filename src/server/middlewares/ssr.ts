@@ -35,16 +35,25 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     const [mid, content] = item[0]
     styles.push(`<style id="s${mid}-0">${content}</style>`)
   })
-  // 静态资源
-  let assetsMap
+
   const assets = getAssets()
-  if ((assets as Promise<IAssets>).then) {
-    ;(assets as Promise<IAssets>).then((res: IAssets) => {
-      assetsMap = res
-    })
-  } else {
-    assetsMap = assets
+  async function getAssetsMap() {
+    // 静态资源
+    let assetsMap = {
+      js: [],
+      css: []
+    }
+    console.log('assets===>', assets)
+    if (typeof (assets as Promise<IAssets>).then === 'function') {
+      const res = await (assets as Promise<IAssets>)
+      assetsMap = res as typeof assetsMap
+      return assetsMap
+    }
+    assetsMap = assets as typeof assetsMap
+    return assetsMap
   }
+  getAssetsMap()
+  // console.log('assetsMap', assetsMap)
   const template = fs.readFileSync(ejsPath, { encoding: 'utf-8' })
   const result = ejs.render(template, {
     tdk,
@@ -52,11 +61,15 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     store,
     styles,
     html,
-    assetsMap,
+    assetsMap: {
+      js: [],
+      css: []
+    },
     proConfig,
     showInitData: Object.keys(fetchResult || {}).length > 0,
     showState: Object.keys(store.getState() || {}).length > 0
   })
+  console.log('result', result)
   ctx.body = result
   await next()
   return null

@@ -19,10 +19,10 @@ export default [
     path: '/',
     component: AsyncLoader(() => import('./index')),
     exact: true
+  },
+  {
+    path: '*',
+    component: pageNotFound,
+    exact: true
   }
-  // {
-  //   path: '*',
-  //   component: pageNotFound,
-  //   exact: true
-  // }
 ]

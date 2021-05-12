@@ -3,11 +3,7 @@ export interface IAssets {
   css: string[]
 }
 export default function getAssets(): IAssets | Promise<IAssets> {
-  // let devHost = '//localhost:9001';
   const devHost = `//localhost:${8080}`
-
-  const jsFiles = ['libs.js', 'main.js', 'styles.js']
-  const cssFiles = ['styles.css']
 
   const assets: IAssets = {
     js: [],
@@ -22,14 +18,9 @@ export default function getAssets(): IAssets | Promise<IAssets> {
     return import('../../../dist/server/asset-manifest.json').then((res: any) => {
       // 生产环境 从 asset-manifest.json 读取资源
       const map = res.default
-      jsFiles.forEach(item => {
-        if (map[item]) {
+      Object.keys(map).forEach(item => {
+        if (item.indexOf('.js') > -1) {
           assets.js.push(`<script type="text/javascript"  src="${map[item]}"></script>`)
-        }
-      })
-      cssFiles.forEach(item => {
-        if (map[item]) {
-          assets.css.push(`<link rel="stylesheet" type="text/css" href="${map[item]}" />`)
         }
       })
       return assets

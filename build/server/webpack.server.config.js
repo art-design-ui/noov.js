@@ -72,7 +72,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': JSON.stringify({ NODE_ENV: `${process.env.NODE_ENV}` }),
       __IS_PROD__: isProd,
-      __SERVER__: true
+      __SERVER__: true,
+      __IS_WEBPACK__: true
     }),
     new WebpackBar({
       name: 'server',

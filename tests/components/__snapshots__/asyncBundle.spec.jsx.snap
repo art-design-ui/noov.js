@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`test AsyncBundle component should render the correct default AsyncBundle when load is exist should return component 1`] = `
-<p
-  class="load-component"
->
-  component
-</p>
-`;

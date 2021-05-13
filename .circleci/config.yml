@@ -36,7 +36,7 @@ jobs:
           command: mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
       - run: npm run docs:build
       - run: npm run build
-      - run: npm run start
+      # - run: npm run start
       - run: ls -al
       - run: # git push
           name: push-github

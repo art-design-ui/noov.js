@@ -6,6 +6,7 @@ import fs from 'fs'
 import path from 'path'
 import genHtml from './genHtml'
 import Koa from 'koa'
+import tdkConfig from '../../config/tdk'
 
 const ejsPath = path.join(__dirname, '../../templates/server.ejs')
 const store = getStore()
@@ -21,14 +22,10 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     styles.forEach((style: any) => cssObj.add(style._getContent()))
   const { html, fetchResult } = await genHtml(path, insertCss, store)
   const { page } = fetchResult || {}
-  let tdk = {
-    title: 'noov.js',
-    keywords: '默认关键词',
-    description: '默认描述'
-  }
+  let tdk = tdkConfig[path as keyof typeof tdkConfig]
   // 添加TDK
-  if (page && page.tdk) {
-    tdk = page.tdk
+  if (Object.keys(page).length) {
+    tdk = page
   }
   const styles: string[] = []
   Array.from(cssObj).forEach((item: any) => {
@@ -43,7 +40,6 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
       js: [],
       css: []
     }
-    console.log('assets===>', assets)
     if (typeof (assets as Promise<IAssets>).then === 'function') {
       const res = await (assets as Promise<IAssets>)
       assetsMap = res as typeof assetsMap
@@ -53,7 +49,6 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     return assetsMap
   }
   const assetsMap = await getAssetsMap()
-  console.log('assetsMap', assetsMap)
   const template = fs.readFileSync(ejsPath, { encoding: 'utf-8' })
   const result = ejs.render(template, {
     tdk,
@@ -66,8 +61,7 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     showInitData: Object.keys(fetchResult || {}).length > 0,
     showState: Object.keys(store.getState() || {}).length > 0
   })
-  console.log('result', result)
   ctx.body = result
-  await next()
+  // await next()
   return null
 }

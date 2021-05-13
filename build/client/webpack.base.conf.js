@@ -1,11 +1,9 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const webpack = require('webpack')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-
 const utils = require('./utils')
 const config = require('../../config')
 
@@ -79,12 +77,6 @@ module.exports = {
     new WebpackBar({
       name: 'client',
       color: 'green'
-    }),
-    new HtmlWebpackPlugin({
-      title: config.base.title,
-      filename: 'index.html',
-      template: path.resolve(__dirname, '../../templates/index.ejs'),
-      inject: true
     }),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify({ NODE_ENV: 'development' }),

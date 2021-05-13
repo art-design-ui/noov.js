@@ -10,7 +10,7 @@ const popStateCallback = () => {
   }
 }
 
-interface ITdk {
+export interface ITdk {
   title: string
   keywords: string
   description: string
@@ -70,7 +70,7 @@ export default (SourceComponent: any) =>
         document.title = tdk.title
       }
       this.setState({
-        initialData: res,
+        initialData: res.data,
         page: res.page,
         canClientFetch: true
       })

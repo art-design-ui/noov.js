@@ -1,8 +1,9 @@
 import Koa from 'koa'
-import koaStatic from 'koa-static'
+import koaStatic from '../middlewares/koa-static'
 import proxy from 'koa2-proxy-middleware'
 import ssrMiddleware from '../middlewares/ssr'
 import proConfig from '../../../config/pro-config'
+import path from 'path'
 
 const port = proConfig.nodeServerPort || process.env.PORT
 
@@ -27,15 +28,12 @@ if (process.env.NODE_ENV === 'development') {
   app.use(proxy(options))
 }
 
-console.log('__dirname', __dirname)
-
-console.log('koaStatic', koaStatic)
-app.use(koaStatic('./static'))
+app.use(koaStatic(path.join(__dirname, '../static'), { prefix: '/static' }))
 
 // ssr 中间件
 app.use(ssrMiddleware)
 
 // 启动服务
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('server is start .', `http://localhost:${port}`)
 })

@@ -49,7 +49,12 @@ module.exports = merge(baseWebpackConfig, {
         }
       }),
       new TerserPlugin({
-        parallel: true
+        parallel: true,
+        compress: {
+          drop_console: true,
+          drop_debugger: false,
+          pure_funcs: ['console.log'] // 移除console
+        }
       }),
       new CompressionWebpackPlugin({
         compressionOptions: {

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Loading component should render the correct default loading 1`] = `
+<div
+  class="loading"
+>
+  loading......
+</div>
+`;

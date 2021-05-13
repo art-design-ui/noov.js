@@ -20,7 +20,7 @@ export default function getAssets(): IAssets | Promise<IAssets> {
       // 生产环境 从 asset-manifest.json 读取资源
       const map = res.default
       Object.keys(map).forEach(item => {
-        if (item.indexOf('.js') > -1) {
+        if (/.+\.js$/.test(item)) {
           assets.js.push(`<script type="text/javascript"  src="${map[item]}"></script>`)
         }
       })

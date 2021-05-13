@@ -1,8 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const theme = path.join(__dirname, '../../src/client/style/antd.override.theme.less')
-
 const config = require('../../config')
 
 exports.resolve = function (dir) {
@@ -50,9 +48,6 @@ exports.styleLoaders = function (options) {
       {
         loader: 'less-loader',
         options: {
-          modifyconsts: {
-            hack: `true; @import "${theme}";` // Override with less file
-          },
           javascriptEnabled: true
         }
       }

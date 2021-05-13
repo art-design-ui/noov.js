@@ -44,7 +44,7 @@ export const Home = (props: any) => {
           onClick={handleClick}
           onKeyDown={handleClick}
         >
-          点一点
+          点一点1
         </div>
         <span className="button--green click-btn">作者：{name}</span>
         <span className="button--green click-btn">ID：{id}</span>
@@ -58,12 +58,20 @@ Home.asyncData = ({ store }: any) => {
     name: 'vnues',
     id: '@1213'
   }
+  const page = {
+    title: '首页',
+    keywords: 'noov.js',
+    description: 'react-ssr解决方案'
+  }
   // TODO 这里改动 服务端没有做更新
   // 在异步请求更新store 我们建议放在action操作 应该少一个textarea资源
   store.dispatch.home.setUser(data)
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve(data)
+      resolve({
+        data,
+        page
+      })
     }, 2000)
   })
 }

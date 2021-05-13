@@ -4,9 +4,11 @@ import proxy from 'koa2-proxy-middleware'
 import ssrMiddleware from '../middlewares/ssr'
 import proConfig from '../../../config/pro-config'
 import path from 'path'
+import getIp from '../utils/get-ip'
 
 const port = proConfig.nodeServerPort || process.env.PORT
 
+const IP = getIp()
 const app = new Koa()
 
 console.log('process.env.NODE_ENV==>', process.env.NODE_ENV)
@@ -35,5 +37,5 @@ app.use(ssrMiddleware)
 
 // 启动服务
 app.listen(port, () => {
-  console.log('server is start .', `http://localhost:${port}`)
+  console.log('server is start .', `http://${IP}:${port}`)
 })

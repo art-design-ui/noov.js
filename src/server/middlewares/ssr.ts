@@ -22,9 +22,18 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     styles.forEach((style: any) => cssObj.add(style._getContent()))
   const { html, fetchResult } = await genHtml(path, insertCss, store)
   const { page } = fetchResult || {}
-  let tdk = tdkConfig[path as keyof typeof tdkConfig]
+  const curTDK = tdkConfig[path as keyof typeof tdkConfig]
+  let tdk = {
+    title: '',
+    keywords: '',
+    description: ''
+  }
+  if (curTDK) {
+    tdk = curTDK
+  }
+
   // 添加TDK
-  if (Object.keys(page).length) {
+  if (Object.keys(page || {}).length) {
     tdk = page
   }
   const styles: string[] = []

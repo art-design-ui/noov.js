@@ -52,8 +52,8 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     assetsMap = assets as typeof assetsMap
     return assetsMap
   }
-  getAssetsMap()
-  // console.log('assetsMap', assetsMap)
+  const assetsMap = await getAssetsMap()
+  console.log('assetsMap', assetsMap)
   const template = fs.readFileSync(ejsPath, { encoding: 'utf-8' })
   const result = ejs.render(template, {
     tdk,
@@ -61,10 +61,7 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     store,
     styles,
     html,
-    assetsMap: {
-      js: [],
-      css: []
-    },
+    assetsMap,
     proConfig,
     showInitData: Object.keys(fetchResult || {}).length > 0,
     showState: Object.keys(store.getState() || {}).length > 0

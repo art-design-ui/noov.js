@@ -70,7 +70,7 @@ export default (SourceComponent: any) =>
         document.title = tdk.title
       }
       this.setState({
-        initialData: res.data,
+        initialData: res,
         page: res.page,
         canClientFetch: true
       })

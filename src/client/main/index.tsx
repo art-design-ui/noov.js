@@ -15,7 +15,7 @@ function renderDom(routeList: IRoute[], initStoreState?: Store) {
     const removeCss = styles.map(style => style._insertCss()) // 客户端执行，插入style
     return () => removeCss.forEach(dispose => dispose()) // 组件卸载时 移除当前的 style 标签
   }
-  // !redux数据更新
+  // redux数据更新
   const store = getStore(initStoreState)
   // 服务端只需要获取state就行 我们方法的定义在redux就定义好了
   window.__STORE__ = store

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import style from './index.less'
 import isConnect from '@/library/isConnect'
 import Logo from './logo.jpg'
@@ -9,7 +9,7 @@ export interface IUser {
 }
 export const Home = (props: any) => {
   const { initialData } = props
-  const [user, setUser] = useState<IUser>(initialData)
+  const { name, id } = initialData
   const handleClick = () => {
     alert('handleClick')
   }
@@ -46,8 +46,8 @@ export const Home = (props: any) => {
         >
           点一点
         </div>
-        <span className="button--green click-btn">作者：{user.name}</span>
-        <span className="button--green click-btn">ID：{user.id}</span>
+        <span className="button--green click-btn">作者：{name}</span>
+        <span className="button--green click-btn">ID：{id}</span>
       </div>
     </div>
   )
@@ -59,6 +59,7 @@ Home.asyncData = ({ store }: any) => {
     id: '@1213'
   }
   // TODO 这里改动 服务端没有做更新
+  // 在异步请求更新store 我们建议放在action操作 应该少一个textarea资源
   store.dispatch.home.setUser(data)
   return new Promise(resolve => {
     setTimeout(() => {

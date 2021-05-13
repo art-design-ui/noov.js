@@ -24,6 +24,7 @@ module.exports = merge(baseWebpackConfig, {
   },
   devtool: 'source-map',
   output: {
+    filename: '[name].[contenthash].js',
     publicPath: `${config.prod.assetsPublicPath}/${config.base.projectName}/`
   },
 

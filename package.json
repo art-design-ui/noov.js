@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "start": "cross-env NODE_ENV=production node ./dist/server/app.js",
-    "dev1":"node ./build/start.js",
+    "dev1": "node ./build/start.js",
     "dev": "npm run client:dev & node ./dist/server/app",
     "client:dev": "node ./build/client/dev-server.js",
     "server:dev": "node ./build/server/dev-server.js",

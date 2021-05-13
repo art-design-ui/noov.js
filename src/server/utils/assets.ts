@@ -15,6 +15,7 @@ export default function getAssets(): IAssets | Promise<IAssets> {
     assets.js.push(`<script type="text/javascript"  src="${devHost}/main.js"></script>`)
   } else {
     // 生产环境中 静态资源的处理
+    // webpack过程中就会处理打包
     return import('../../../dist/server/asset-manifest.json').then((res: any) => {
       // 生产环境 从 asset-manifest.json 读取资源
       const map = res.default

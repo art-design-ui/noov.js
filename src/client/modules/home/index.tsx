@@ -2,6 +2,7 @@ import React from 'react'
 import style from './index.less'
 import isConnect from '@/library/isConnect'
 import Logo from './logo.jpg'
+import { Link } from 'react-router-dom'
 
 export interface IUser {
   name: string
@@ -48,6 +49,7 @@ export const Home = (props: any) => {
         </div>
         <span className="button--green click-btn">作者：{name}</span>
         <span className="button--green click-btn">ID：{id}</span>
+        <Link to="/not-found">not-found路由</Link>
       </div>
     </div>
   )

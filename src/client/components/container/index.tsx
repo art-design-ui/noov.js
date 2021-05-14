@@ -59,8 +59,6 @@ export default (SourceComponent: any) =>
     async asyncData() {
       // ssr首次进入页面以及csr/ssr切换路由时才调用组件的asyncData方法
       const store = window.__STORE__ // 从全局得到 store
-      // 兼容不使用 redux 的页面
-      // 通过props.getInitialData判断
       const res = SourceComponent.asyncData
         ? await SourceComponent.asyncData({ store })
         : {}
@@ -70,8 +68,7 @@ export default (SourceComponent: any) =>
         document.title = tdk.title
       }
       this.setState({
-        initialData: res.data,
-        page: res.page,
+        initialData: res,
         canClientFetch: true
       })
     }

@@ -32,7 +32,7 @@ describe('test AsyncBundle component', () => {
     function SourceComponent(props) {
       const { initialData } = props
       console.log(initialData)
-      const { name, age } = initialData
+      const { name, age } = initialData.data || {}
       return (
         <div className="source-component">
           <p>{name}</p>

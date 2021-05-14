@@ -34,7 +34,7 @@ function serve(root: string, opts: any) {
         }
 
         try {
-          done = ((await send(ctx, ctx.path, opts)) as unknown) as boolean
+          done = (await send(ctx, ctx.path, opts)) as unknown as boolean
         } catch (err) {
           if (err.status !== 404) {
             throw err

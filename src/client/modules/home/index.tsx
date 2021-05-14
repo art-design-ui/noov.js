@@ -9,7 +9,7 @@ export interface IUser {
 }
 export const Home = (props: any) => {
   const { initialData } = props
-  const { name, id } = initialData
+  const { name, id } = initialData.data || {}
   const handleClick = () => {
     alert('handleClick')
   }
@@ -44,7 +44,7 @@ export const Home = (props: any) => {
           onClick={handleClick}
           onKeyDown={handleClick}
         >
-          点一点1
+          点一点
         </div>
         <span className="button--green click-btn">作者：{name}</span>
         <span className="button--green click-btn">ID：{id}</span>

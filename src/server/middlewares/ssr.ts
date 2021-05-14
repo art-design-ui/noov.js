@@ -71,6 +71,6 @@ export default async (ctx: Koa.Context, next: Koa.Next): Promise<null> => {
     showState: Object.keys(store.getState() || {}).length > 0
   })
   ctx.body = result
-  // await next()
+  await next()
   return null
 }

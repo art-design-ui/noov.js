@@ -51,6 +51,6 @@ export default {
 
 > 另外也可以通过接口获取 TDK
 
-## [noov.js discussions](https://github.com/art-design-ui/noov.js/issues)
+## [社区](https://github.com/art-design-ui/noov.js/issues)
 
 <img src="https://cdn.nlark.com/yuque/0/2020/png/685693/1603718006794-778ac551-99a0-4ffc-b13e-080cff7a78f4.png?x-oss-process=image%2Fresize%2Cw_300" width="150" />

@@ -11,6 +11,8 @@ features:
     desc: 针对于react ssr解决方案，无须任何配置，即可一键使用
   - title: 完备
     desc: 配置齐全，支持热更新，TDK配置，路由按需加载
+  - title: 快速
+    desc: 基于 React.js 的轻量级应用框架，可用来快速创建服务端渲染(SSR) 应用
 footer: 遵循 MIT 开源协议 | 版权所有 © 2020<br />由 [dumi](https://d.umijs.org) 提供支持
 ---
 

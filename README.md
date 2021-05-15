@@ -16,3 +16,41 @@
 npm i
 npm run dev
 ```
+
+## API
+
+### asyncData
+
+> 你可能想要在服务器端获取并渲染数据。noov.js 添加了 asyncData 方法使得你能够在渲染组件之前异步获取数据。
+
+- 类型： Function
+
+asyncData 方法会在组件（限于页面组件）每次加载之前被调用。它可以在服务端或路由更新之前被调用。
+
+```js
+ Home.asyncData() {
+    return { project: 'nuxt' }
+  }
+```
+
+> 注意：由于 asyncData 方法是在组件 初始化 前被调用的，所以在方法内是没有办法通过 this 来引用组件的实例对象。
+
+## TDK 配置
+
+> 你可能想要想要在每个页面都配置不同的 TDK，这里可以在 config 目录进行配置，key 值对应`路由`
+
+```js
+export default {
+  '/': {
+    title: 'home',
+    keywords: 'noov.js',
+    description: '一套react-ssr解决方案'
+  }
+}
+```
+
+> 另外也可以通过接口获取 TDK
+
+## [noov.js discussions](https://github.com/art-design-ui/noov.js/issues)
+
+<img src="https://cdn.nlark.com/yuque/0/2020/png/685693/1603718006794-778ac551-99a0-4ffc-b13e-080cff7a78f4.png?x-oss-process=image%2Fresize%2Cw_300" width="150" />

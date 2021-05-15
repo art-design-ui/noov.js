@@ -7,8 +7,6 @@ toc: menu
 # API 说明
 
 
-> noov.js的api
-
 ### asyncData
 
 > 你可能想要在服务器端获取并渲染数据。noov.js 添加了asyncData方法使得你能够在渲染组件之前异步获取数据。

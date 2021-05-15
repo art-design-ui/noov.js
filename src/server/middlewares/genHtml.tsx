@@ -18,7 +18,8 @@ export default async function genHtml(
   insertCss: Function,
   store: Store
 ): Promise<IGenResult> {
-  // 获得静态路由
+  // 获得静态路由列表
+  // 因为服务端不需要动态加载路由
   const staticRoutesList = await getStaticRoutes(routeList)
 
   // 查找到的目标路由对象

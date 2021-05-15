@@ -5,7 +5,7 @@ hero:
   desc: 📦 快速、通用、轻量级的SSR解决方案。
   actions:
     - text: 开发指南
-      link: /zh/guide
+      link: /guide
 features:
   - title: 简单
     desc: 针对于react ssr解决方案，无须任何配置，即可一键使用

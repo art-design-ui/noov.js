@@ -5,7 +5,7 @@ export interface IMatchRoute {
   targetRoute: any
   targetMatch: any
 }
-export default (path: string, routeList:IRoute[]): IMatchRoute => {
+export default (path: string, routeList: IRoute[]): IMatchRoute => {
   let targetRoute
   let targetMatch
 

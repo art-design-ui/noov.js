@@ -32,6 +32,6 @@ npm run dev
 
 ## 社区
 
-| Github Discunoovssions                                                  | 微信群                                                                                                                                                              |
-| ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [noov.js] discussions](https://github.com/art-design-ui/noov.js/issues) | <img src="https://cdn.nlark.com/yuque/0/2020/png/685693/1603718006794-778ac551-99a0-4ffc-b13e-080cff7a78f4.png?x-oss-process=image%2Fresize%2Cw_300" width="150" /> |
+| Github Discunoovssions                                                 | 微信群                                                                                                                                                              |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [noov.js discussions](https://github.com/art-design-ui/noov.js/issues) | <img src="https://cdn.nlark.com/yuque/0/2020/png/685693/1603718006794-778ac551-99a0-4ffc-b13e-080cff7a78f4.png?x-oss-process=image%2Fresize%2Cw_300" width="150" /> |
